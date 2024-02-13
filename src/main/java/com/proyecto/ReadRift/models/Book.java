@@ -16,18 +16,20 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Libro {
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private UUID uuid;
-    private String autor;
-    private String titulo;
-    @ManyToOne
-    private Category category;
+    private String author;
+    private String title;
+    private String stock;
+    private String condition;
+    private boolean available;
+    private String urlImage;
+    private String isbn;
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate
     private LocalDateTime updatedAt;
-
 }
