@@ -1,4 +1,4 @@
-package com.proyecto.ReadRift.models;
+package com.proyecto.ReadRift.models.user;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static es.laguna.erosketa.models.Permission.*;
+import static com.proyecto.ReadRift.models.user.Permission.*;
 
 @RequiredArgsConstructor
 public enum Role {

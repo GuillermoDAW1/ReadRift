@@ -23,7 +23,7 @@ public class Book {
     private UUID uuid;
     private String author;
     private String title;
-    private String stock;
+    private Integer stock;
     private String condition;
     private boolean available;
     private String urlImage;

@@ -8,7 +8,7 @@ import lombok.Data;
 public class BookRequestDto {
     private final String author;
     private final String title;
-    private final String stock;
+    private final Integer stock;
     private final String condition;
     private final boolean available;
     private final String urlImage;
