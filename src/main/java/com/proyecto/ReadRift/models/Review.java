@@ -1,5 +1,7 @@
 package com.proyecto.ReadRift.models;
 
+import com.proyecto.ReadRift.models.Book;
+import com.proyecto.ReadRift.models.user.User;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,7 +23,7 @@ public class Review {
     private UUID uuid;
     @ManyToOne
     private User user;
-    @ManyToOne
+    @ManyToOne//quitar
     private Book book;
     private int rating;
     private String comment;
