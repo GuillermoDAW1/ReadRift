@@ -14,8 +14,8 @@ import java.util.UUID;
 public class ExchangeResponseDto {
     private Long id;
     private UUID uuid;
-    private UUID borrowerId; // El ID del usuario que solicita el préstamo
-    private UUID donorId; // El ID del usuario que dona los libros
+    private Integer borrower; // usuario que solicita el préstamo
+    private Integer donor; //  usuario que dona los libros
     private List<Long> borrowedBooksIds; // Lista de IDs de los libros prestados en este intercambio
     private LocalDateTime requestDate; // Fecha de solicitud de préstamo
     private LocalDateTime loanDate; // Fecha de inicio del préstamo

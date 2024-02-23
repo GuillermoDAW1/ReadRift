@@ -22,15 +22,10 @@ public class Exchange {
 
     private UUID uuid;
 
-    @ManyToOne
-    @JoinColumn(name = "borrower_id")
-    private User borrower; // Usuario que solicita el préstamo
 
-    @ManyToOne
-    @JoinColumn(name = "donor_id")
-    private User donor; // Usuario que dona los libros
-
-    @OneToMany(mappedBy = "exchange")
+    private Integer borrower; // Usuario que solicita el préstamo
+    private Integer donor; // Usuario que dona los libros
+    @OneToMany
     private List<Book> borrowedBooks; // Lista de libros prestados en este intercambio
 
     private LocalDateTime requestDate; // Fecha de solicitud de préstamo

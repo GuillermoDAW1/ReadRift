@@ -17,8 +17,8 @@ public class ExchangeMapper {
         return new ExchangeResponseDto(
                 exchange.getId(),
                 exchange.getUuid(),
-                exchange.getBorrower().getId(), // Obtenemos el ID del usuario que solicita el préstamo
-                exchange.getDonor().getId(), // Obtenemos el ID del usuario que dona los libros
+                exchange.getBorrower(), // Obtenemos el ID del usuario que solicita el préstamo
+                exchange.getDonor(), // Obtenemos el ID del usuario que dona los libros
                 exchange.getBorrowedBooks().stream().map(book -> book.getId()).collect(Collectors.toList()), // Obtenemos una lista de IDs de los libros prestados
                 exchange.getRequestDate(),
                 exchange.getLoanDate(),
@@ -39,9 +39,9 @@ public class ExchangeMapper {
                 0L, // El ID se generará automáticamente por la base de datos
                 UUID.randomUUID(),
                 // Aquí deberías tener lógica para obtener los usuarios y los libros prestados según los IDs proporcionados en el DTO
-                null, // Usuario que solicita el préstamo
-                null, // Usuario que dona los libros
-                null, // Lista de libros prestados
+                exchangeRequestDto.getBorrower(),
+                exchangeRequestDto.getDonor(),
+                exchangeRequestDto.getBorrowedBooksIds(),
                 exchangeRequestDto.getRequestDate(),
                 exchangeRequestDto.getLoanDate(),
                 exchangeRequestDto.getReturnDate(),

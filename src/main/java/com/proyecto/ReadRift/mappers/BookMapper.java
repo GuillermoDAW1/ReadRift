@@ -45,7 +45,8 @@ public class BookMapper {
 
    public Book toModel(BookRequestDto bookRequestDto) {
         return new Book(
-
+                0L,
+                UUID.randomUUID(),
                 bookRequestDto.getAuthor(),
                 bookRequestDto.getTitle(),
                 bookRequestDto.getDescription(),
@@ -53,6 +54,7 @@ public class BookMapper {
                 bookRequestDto.getAvailable(),
                 bookRequestDto.getUrlImage(),
                 bookRequestDto.getIsbn(),
+                null,
                 LocalDateTime.now(),
                 LocalDateTime.now()
 

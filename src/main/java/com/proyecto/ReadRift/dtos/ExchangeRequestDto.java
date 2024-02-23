@@ -1,5 +1,6 @@
 package com.proyecto.ReadRift.dtos;
 
+import com.proyecto.ReadRift.models.Book;
 import com.proyecto.ReadRift.models.ExchangeStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,9 +13,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ExchangeRequestDto {
-    private UUID borrowerId; // El ID del usuario que solicita el préstamo
-    private UUID donorId; // El ID del usuario que dona los libros
-    private List<Long> borrowedBooksIds; // Lista de IDs de los libros prestados en este intercambio
+    private Integer borrower; // El ID del usuario que solicita el préstamo
+    private Integer donor; // El ID del usuario que dona los libros
+    private List<Book> borrowedBooksIds; // Lista de IDs de los libros prestados en este intercambio
     private LocalDateTime requestDate; // Fecha de solicitud de préstamo
     private LocalDateTime loanDate; // Fecha de inicio del préstamo
     private LocalDateTime returnDate; // Fecha de devolución del préstamo
