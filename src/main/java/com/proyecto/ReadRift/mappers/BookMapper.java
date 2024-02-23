@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+
 @Component
 public class BookMapper {
 
@@ -19,7 +21,6 @@ public class BookMapper {
         this.exchangeMapper = exchangeMapper;
     }
 
-
     public BookResponseDto toResponse(Book book) {
         return new BookResponseDto(
                 book.getId(),
@@ -29,38 +30,32 @@ public class BookMapper {
                 book.getDescription(),
                 book.getCondition(),
                 book.isAvailable(),
-                book.getUpdatedAt(),
                 book.getUrlImage(),
                 book.getIsbn(),
-                book.getOwner(),
                 book.getCreatedAt(),
-                book.getUpdatedAt(),
-                );
+                book.getUpdatedAt()
+        );
     }
 
     public List<BookResponseDto> toResponse(List<Book> books) {
         return books.stream()
                 .map(this::toResponse)
-                .toList();
+                .collect(Collectors.toList());
     }
 
-    // Mapeamos de DTO a modelo
     public Book toModel(BookRequestDto bookRequestDto) {
         return new Book(
-                0L,
+
                 UUID.randomUUID(),
-                BookRequestDto.getAuthor(),
-                BookRequestDto.getTitle(),
-                LocalDateTime.now(), // TODO: esto está puesto a piñón fijo pero no es así.
-                productRequestDto.getToBuy(),
-                LocalDateTime.now(), // TODO: esto está puesto a piñón fijo pero no es así.
-                productRequestDto.getToCheck(),
-                LocalDateTime.now(), // TODO: esto está puesto a piñón fijo pero no es así.
-                productRequestDto.getCategoryId() != null ?
-                        categoryMapper.toModelfromRequestDto(productRequestDto.getCategoryId()) : null,
+                bookRequestDto.getAuthor(),
+                bookRequestDto.getTitle(),
+                bookRequestDto.getDescription(),
+                bookRequestDto.getCondition(),
+                bookRequestDto.isAvailable(),
+                bookRequestDto.getUrlImage(),
+                bookRequestDto.getIsbn(),
                 LocalDateTime.now(),
                 LocalDateTime.now()
         );
     }
 }
-

@@ -1,11 +1,13 @@
 package com.proyecto.ReadRift.dtos;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
+@AllArgsConstructor
 public class BookResponseDto {
     private Long id;
     private UUID uuid;
@@ -16,7 +18,6 @@ public class BookResponseDto {
     private boolean available;
     private String urlImage;
     private String isbn;
-    private Long ownerId; // El ID del propietario del libro
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

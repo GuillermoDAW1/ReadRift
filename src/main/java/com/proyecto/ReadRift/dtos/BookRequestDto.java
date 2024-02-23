@@ -13,5 +13,4 @@ public class BookRequestDto {
     private boolean available;
     private String urlImage;
     private String isbn;
-    private Long ownerId; // El ID del propietario del libro
 }
