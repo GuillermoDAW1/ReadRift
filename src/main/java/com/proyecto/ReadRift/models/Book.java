@@ -25,7 +25,7 @@ public class Book {
     private String title;
     private String description; // Agregamos una descripción del libro
     private String condition;
-    private boolean available;
+    private Boolean available;
     private String urlImage;
     private String isbn;
 

@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class ExchangeResponseDto {
     private Long id;
     private UUID uuid;

@@ -9,15 +9,15 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 public class BookResponseDto {
-    private Long id;
-    private UUID uuid;
-    private String author;
-    private String title;
-    private String description;
-    private String condition;
-    private boolean available;
-    private String urlImage;
-    private String isbn;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private final Long id;
+    private final UUID uuid;
+    private final String author;
+    private final String title;
+    private final String description;
+    private final String condition;
+    private final Boolean available;
+    private final String urlImage;
+    private final String isbn;
+    private final LocalDateTime createdAt;
+    private final LocalDateTime updatedAt;
 }

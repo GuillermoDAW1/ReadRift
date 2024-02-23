@@ -29,7 +29,7 @@ public class BookMapper {
                 book.getTitle(),
                 book.getDescription(),
                 book.getCondition(),
-                book.isAvailable(),
+                book.getAvailable(),
                 book.getUrlImage(),
                 book.getIsbn(),
                 book.getCreatedAt(),
@@ -43,19 +43,19 @@ public class BookMapper {
                 .collect(Collectors.toList());
     }
 
-    public Book toModel(BookRequestDto bookRequestDto) {
+   public Book toModel(BookRequestDto bookRequestDto) {
         return new Book(
 
-                UUID.randomUUID(),
                 bookRequestDto.getAuthor(),
                 bookRequestDto.getTitle(),
                 bookRequestDto.getDescription(),
                 bookRequestDto.getCondition(),
-                bookRequestDto.isAvailable(),
+                bookRequestDto.getAvailable(),
                 bookRequestDto.getUrlImage(),
                 bookRequestDto.getIsbn(),
                 LocalDateTime.now(),
                 LocalDateTime.now()
+
         );
     }
-}
+    }
