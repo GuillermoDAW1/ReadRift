@@ -11,11 +11,12 @@ public class BookResponseDto {
     private UUID uuid;
     private String author;
     private String title;
-    private Integer stock;
+    private String description;
     private String condition;
     private boolean available;
     private String urlImage;
     private String isbn;
+    private Long ownerId; // El ID del propietario del libro
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

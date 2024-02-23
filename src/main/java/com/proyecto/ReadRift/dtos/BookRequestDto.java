@@ -8,9 +8,10 @@ import lombok.Data;
 public class BookRequestDto {
     private final String author;
     private final String title;
-    private final Integer stock;
+    private final String description;
     private final String condition;
-    private final boolean available;
-    private final String urlImage;
-    private final String isbn;
+    private boolean available;
+    private String urlImage;
+    private String isbn;
+    private Long ownerId; // El ID del propietario del libro
 }

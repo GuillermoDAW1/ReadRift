@@ -1,19 +1,34 @@
 package com.proyecto.ReadRift.services;
 
 import com.proyecto.ReadRift.models.Book;
-import com.proyecto.ReadRift.repositories.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.proyecto.ReadRift.models.user.User;
+
 import java.util.List;
+import java.util.UUID;
 
-@Service
-public class BookService {
-    @Autowired
-    private BookRepository bookRepository;
+public interface BookService {
 
-    public List<Book> getAllBooks() {
-        return bookRepository.findAll();
-    }
+    Book findById(Long id);
+    Book findByUuid(UUID uuid);
+    void deleteById(Long id);
+    Book save(Book book);
+    Book update(Long id, Book book);
+    List<Book> findAll();
+   // List<Book> searchBooks(String title, String author, String areaOfStudy);
+    Book updateAvailability(Long id, Boolean available);
+    Book getBookDetails(Long id);
+    List<Book> getBookHistory(Long id);
 
-    // Puedes agregar más métodos de servicio según sea necesario
+    List<Book> findByAuthor(String author);
+
+    List<Book> findByTitle(String title);
+
+    List<Book> findByCondition(String condition);
+
+    List<Book> findByAvailableTrue();
+
+    List<Book> findByIsbn(String isbn);
+
+    List<Book> findByOwner(User owner);
 }
+
