@@ -1,6 +1,6 @@
 INSERT INTO users (firstname, lastname, email, password, role) VALUES
-    ('John', 'Doe', 'john@example.com', 'password123', 'USER'),
-    ('Jane', 'Smith', 'jane@example.com', 'password456', 'USER');
+    ('John', 'Doe', 'john@example.com', 'password', 'USER'),
+    ('Jane', 'Smith', 'jane@example.com', 'password', 'USER');
 
 INSERT INTO books (uuid, author, title, description, `condition`, available, urlImage, isbn, owner_id) VALUES
     (uuid(), 'Author 1', 'Book 1', 'Description of Book 1', 'Good', TRUE, 'http://example.com/image1.jpg', '1234567890', 1),
