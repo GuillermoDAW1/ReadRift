@@ -37,6 +37,9 @@ dependencies {
 	implementation 'net.datafaker:datafaker:2.1.0'
 }
 
+tasks.named('bootBuildImage') {
+	builder = 'paketobuildpacks/builder-jammy-base:latest'
+}
 
 tasks.named('test') {
 	useJUnitPlatform()
