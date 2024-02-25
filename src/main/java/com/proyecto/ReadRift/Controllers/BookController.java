@@ -67,7 +67,7 @@ public class BookController {
         }
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<BookResponseDto>> getAllBooks() {
         List<Book> books = bookService.findAll();
         List<BookResponseDto> bookResponseDtos = bookMapper.toResponse(books);
@@ -144,13 +144,17 @@ public class BookController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    } @GetMapping("/owner/{ownerId}")
+    public ResponseEntity<List<Book>> getBooksByOwner(@PathVariable Long ownerId) {
+        User owner = new User();
+        owner.setId(ownerId); // Suponiendo que tengas un método para obtener un usuario por ID en tu servicio de usuario
+        List<Book> books = bookService.findByOwner(owner);
+        if (books != null && !books.isEmpty()) {
+            return new ResponseEntity<>(books, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
-    @GetMapping("/owner/{ownerId}")
-    public ResponseEntity<List<BookResponseDto>> getBooksByOwner(@PathVariable Long ownerId) {
-        User owner = new User(); // Aquí debes implementar la lógica para obtener el usuario por su ID
-        List<Book> booksByOwner = bookService.findByOwner(owner);
-        List<BookResponseDto> bookResponseDtos = bookMapper.toResponse(booksByOwner);
-        return ResponseEntity.ok(bookResponseDtos);
-    }
+
 }
 

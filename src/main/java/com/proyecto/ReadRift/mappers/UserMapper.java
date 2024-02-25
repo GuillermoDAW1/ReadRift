@@ -27,4 +27,14 @@ public class UserMapper {
                 userDTO.getRole()
         );
     }
+    public User toModel(Long userId) {
+        return new User(
+                userId,
+              null,
+                null,
+                null,
+                null,
+                null
+        );
+    }
 }

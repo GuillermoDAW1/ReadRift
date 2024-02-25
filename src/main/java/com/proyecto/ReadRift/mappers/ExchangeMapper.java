@@ -3,6 +3,7 @@ package com.proyecto.ReadRift.mappers;
 import com.proyecto.ReadRift.dtos.ExchangeRequestDto;
 import com.proyecto.ReadRift.dtos.ExchangeResponseDto;
 import com.proyecto.ReadRift.models.Exchange;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -11,19 +12,17 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
+@RequiredArgsConstructor
 public class ExchangeMapper {
 
+    private final UserMapper userMapper;
     public ExchangeResponseDto toResponse(Exchange exchange) {
         return new ExchangeResponseDto(
                 exchange.getId(),
                 exchange.getUuid(),
-                exchange.getBorrower(), // Obtenemos el ID del usuario que solicita el préstamo
-                exchange.getDonor(), // Obtenemos el ID del usuario que dona los libros
-                exchange.getBorrowedBooks().stream().map(book -> book.getId()).collect(Collectors.toList()), // Obtenemos una lista de IDs de los libros prestados
-                exchange.getRequestDate(),
-                exchange.getLoanDate(),
-                exchange.getReturnDate(),
-                exchange.getDonationDate(),
+                exchange.getBorrower().getId(), // Obtenemos el ID del usuario que solicita el préstamo
+                exchange.getDonor().getId(), // Obtenemos el ID del usuario que dona los libros
+              //  exchange.getReq_date(),
                 exchange.getStatus()
         );
     }
@@ -36,16 +35,12 @@ public class ExchangeMapper {
 
     public Exchange toModel(ExchangeRequestDto exchangeRequestDto) {
         return new Exchange(
-                0L, // El ID se generará automáticamente por la base de datos
+                null, // El ID se generará automáticamente por la base de datos
                 UUID.randomUUID(),
                 // Aquí deberías tener lógica para obtener los usuarios y los libros prestados según los IDs proporcionados en el DTO
-                exchangeRequestDto.getBorrower(),
-                exchangeRequestDto.getDonor(),
-                exchangeRequestDto.getBorrowedBooksIds(),
-                exchangeRequestDto.getRequestDate(),
-                exchangeRequestDto.getLoanDate(),
-                exchangeRequestDto.getReturnDate(),
-                exchangeRequestDto.getDonationDate(),
+                userMapper.toModel(exchangeRequestDto.getBorrower_id()),
+                userMapper.toModel(exchangeRequestDto.getDonor_id()),
+             //   exchangeRequestDto.getReq_date(),
                 exchangeRequestDto.getStatus()
         );
     }

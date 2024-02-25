@@ -47,8 +47,6 @@ public class SecurityConfiguration {
                 .headers().frameOptions().disable() // Deshabilitar frameOptions para permitir la consola H2
                 .and()
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers(mvc.pattern("/api/products")).permitAll()
-                        .requestMatchers(mvc.pattern("/api/categories")).permitAll() // Añadido para comprobar si se creaban los datos sin usar postman
                         .requestMatchers(mvc.pattern("/api/auth/login")).permitAll()
                         .requestMatchers(mvc.pattern("/api/auth/signup")).permitAll()
                         .requestMatchers(h2ConsoleMatcher).permitAll()

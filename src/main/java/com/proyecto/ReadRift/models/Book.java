@@ -26,7 +26,7 @@ public class Book {
     private String description; // Agregamos una descripción del libro
     private String condition;
     private Boolean available;
-    private String urlImage;
+    private String url_image;
     private String isbn;
 
     @ManyToOne

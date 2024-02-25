@@ -21,7 +21,7 @@ public class JwtService {
         try {
             Algorithm algorithm = Algorithm.HMAC256(jwtSecretKey);
             token = JWT.create()
-                    .withIssuer("erosketa")
+                    .withIssuer("readrift")
                     .withSubject(username)
                     .withExpiresAt(new Date(System.currentTimeMillis() + jwtExpiration))
                     .sign(algorithm);

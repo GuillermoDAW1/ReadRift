@@ -10,8 +10,6 @@ public interface ExchangeService {
     List<Exchange> findByBorrower(User borrower);
     List<Exchange> findByDonor(User donor);
     List<Exchange> findByStatus(ExchangeStatus status);
-    List<Exchange> findByRequestDate(LocalDateTime requestDate);
-    List<Exchange> findByLoanDate(LocalDateTime loanDate);
-    List<Exchange> findByReturnDate(LocalDateTime returnDate);
-    List<Exchange> findByDonationDate(LocalDateTime donationDate);
+   // Exchange findByRequestDate(LocalDateTime requestDate);
+
 }

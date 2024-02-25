@@ -33,23 +33,10 @@ public class ExchangeServiceImpl implements ExchangeService {
         return exchangeRepository.findByStatus(status);
     }
 
-    @Override
-    public List<Exchange> findByRequestDate(LocalDateTime requestDate) {
-        return exchangeRepository.findByRequestDate(requestDate);
-    }
+   /* @Override
+    public Exchange findByRequestDate(LocalDateTime requestDate) {
+        return exchangeRepository.findByReqst_date(requestDate);
+    }*/
 
-    @Override
-    public List<Exchange> findByLoanDate(LocalDateTime loanDate) {
-        return exchangeRepository.findByLoanDate(loanDate);
-    }
 
-    @Override
-    public List<Exchange> findByReturnDate(LocalDateTime returnDate) {
-        return exchangeRepository.findByReturnDate(returnDate);
-    }
-
-    @Override
-    public List<Exchange> findByDonationDate(LocalDateTime donationDate) {
-        return exchangeRepository.findByDonationDate(donationDate);
-    }
 }

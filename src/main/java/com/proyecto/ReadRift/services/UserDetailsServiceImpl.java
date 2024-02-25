@@ -33,4 +33,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         userDetailsRepository.save(userUpdated);
         return userUpdated;
     }
+    public User findById(Long id){
+        return userDetailsRepository.findById(id).get();
+    }
 }

@@ -16,7 +16,7 @@ public class BookResponseDto {
     private final String description;
     private final String condition;
     private final Boolean available;
-    private final String urlImage;
+    private final String url_image;
     private final String isbn;
     private final LocalDateTime createdAt;
     private final LocalDateTime updatedAt;

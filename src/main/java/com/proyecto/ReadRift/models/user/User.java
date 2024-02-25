@@ -20,7 +20,7 @@ import java.util.Collection;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstname;
     private String lastname;
@@ -29,6 +29,11 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER; // Por defecto
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
     // Perfiles de seguridad en base a sus roles
     @Override

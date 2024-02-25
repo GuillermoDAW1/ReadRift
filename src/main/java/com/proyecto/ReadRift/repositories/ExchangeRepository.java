@@ -22,15 +22,6 @@ public interface ExchangeRepository extends JpaRepository<Exchange, Long> {
     List<Exchange> findByStatus(ExchangeStatus status);
 
     // Buscar intercambios por fecha de solicitud
-    List<Exchange> findByRequestDate(LocalDateTime requestDate);
-
-    // Buscar intercambios por fecha de inicio del préstamo
-    List<Exchange> findByLoanDate(LocalDateTime loanDate);
-
-    // Buscar intercambios por fecha de devolución
-    List<Exchange> findByReturnDate(LocalDateTime returnDate);
-
-    // Buscar intercambios por fecha de donación
-    List<Exchange> findByDonationDate(LocalDateTime donationDate);
+//    Exchange findByReqst_date(LocalDateTime requestDate);
 
 }
