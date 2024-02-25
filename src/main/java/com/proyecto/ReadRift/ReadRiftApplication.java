@@ -16,7 +16,7 @@ public class ReadRiftApplication {
 	public CommandLineRunner init(InitialDataCreationService service) {
 		return args -> {
 			service.createDefaultAdminUser();
-			//service.createFakeCategories(10);
-			//service.createFakeProducts(100);
+			service.createFakeBooks(100);
+			//service.createFakeExchanges(10);
 		};}
 }

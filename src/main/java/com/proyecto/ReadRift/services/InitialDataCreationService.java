@@ -13,6 +13,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+
 public class InitialDataCreationService {
     private final BookService bookService;
     private final ExchangeService productService;
@@ -24,23 +25,27 @@ public class InitialDataCreationService {
         userDetailsService.save(user);
     }
 
- /*   public void createFakeCategories(int number) {
+    public void createFakeBooks(int number) {
         if(number <= 0) return;
         for (int i = 0; i < number; i++) {
             Book book = new Book(
                     null,
-                    UUID.randomUUID(),
-                    faker.commerce().department(),
-                    Math.random() <0.50 ? faker.lorem().sentence(10) : null,
-                    faker.color().hex(),
-                    null,
-                    LocalDateTime.now(),
-                    LocalDateTime.now()
+                UUID.randomUUID(),
+            faker.book().author(),
+            faker.book().title(),
+            faker.lorem().characters(255),
+            faker.options().option("New", "Used", "Damaged"),
+            faker.bool().bool(),
+            faker.internet().image(),
+            faker.code().isbn10(),
+            null,
+            LocalDateTime.now(),
+            LocalDateTime.now()
             );
             bookService.save(book);
         }
     }
-    public void createFakeProducts(int number) {
+  /*  public void createFakeExchanges(int number) {
         if(number <= 0) return;
         List<Boook> categories = bookService.findAll();
 
