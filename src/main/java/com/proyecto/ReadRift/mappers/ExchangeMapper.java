@@ -16,12 +16,14 @@ import java.util.stream.Collectors;
 public class ExchangeMapper {
 
     private final UserMapper userMapper;
+    private final BookMapper bookMapper;
     public ExchangeResponseDto toResponse(Exchange exchange) {
         return new ExchangeResponseDto(
                 exchange.getId(),
                 exchange.getUuid(),
                 exchange.getBorrower().getId(), // Obtenemos el ID del usuario que solicita el préstamo
                 exchange.getDonor().getId(), // Obtenemos el ID del usuario que dona los libros
+                exchange.getBook().getId(), // Obtenemos el ID del usuario que dona los libros
               //  exchange.getReq_date(),
                 exchange.getStatus()
         );
@@ -40,6 +42,7 @@ public class ExchangeMapper {
                 // Aquí deberías tener lógica para obtener los usuarios y los libros prestados según los IDs proporcionados en el DTO
                 userMapper.toModel(exchangeRequestDto.getBorrower_id()),
                 userMapper.toModel(exchangeRequestDto.getDonor_id()),
+               null,
              //   exchangeRequestDto.getReq_date(),
                 exchangeRequestDto.getStatus()
         );

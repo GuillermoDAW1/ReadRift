@@ -13,13 +13,14 @@ import java.util.List;
 public interface ExchangeRepository extends JpaRepository<Exchange, Long> {
 
     // Buscar intercambios por usuario que solicita el préstamo
-    List<Exchange> findByBorrower(User borrower);
+    List<Exchange> findByBorrower_Id(Long borrower);
 
     // Buscar intercambios por usuario que dona los libros
-    List<Exchange> findByDonor(User donor);
+    List<Exchange> findByDonor_Id(Long donor);
+    List<Exchange> findByBook_Id(Long book);
 
     // Buscar intercambios por estado
-    List<Exchange> findByStatus(ExchangeStatus status);
+    List<Exchange> findByStatus(String status);
 
     // Buscar intercambios por fecha de solicitud
 //    Exchange findByReqst_date(LocalDateTime requestDate);

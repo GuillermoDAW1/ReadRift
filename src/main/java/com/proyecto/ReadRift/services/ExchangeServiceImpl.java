@@ -19,18 +19,31 @@ public class ExchangeServiceImpl implements ExchangeService {
     }
 
     @Override
-    public List<Exchange> findByBorrower(User borrower) {
-        return exchangeRepository.findByBorrower(borrower);
+    public List<Exchange> findByBorrower(Long borrower) {
+        return exchangeRepository.findByBorrower_Id(borrower);
     }
 
     @Override
-    public List<Exchange> findByDonor(User donor) {
-        return exchangeRepository.findByDonor(donor);
+    public List<Exchange> findByDonor(Long donor) {
+        return exchangeRepository.findByDonor_Id(donor);
+    }
+    @Override
+    public List<Exchange> findByBook(Long book) {
+        return exchangeRepository.findByBook_Id(book);
     }
 
     @Override
-    public List<Exchange> findByStatus(ExchangeStatus status) {
+    public List<Exchange> findByStatus(String status) {
         return exchangeRepository.findByStatus(status);
+    }
+
+    @Override
+    public Exchange save(Exchange exchange) {
+        return exchangeRepository.save(exchange);
+    }
+    @Override
+    public List<Exchange> findAll() {
+        return exchangeRepository.findAll();
     }
 
    /* @Override

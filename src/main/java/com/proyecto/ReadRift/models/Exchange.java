@@ -19,18 +19,15 @@ public class Exchange {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private UUID uuid;
-
     @ManyToOne
     private User borrower; // Usuario que solicita el préstamo
     @ManyToOne
     private User donor; // Usuario que dona los libros
-
+    @ManyToOne
+    private Book book;
 
   //  private LocalDateTime reqst_date; // Fecha de solicitud de préstamo
-
-
     @Enumerated(EnumType.STRING)
     private ExchangeStatus status; // Estado del intercambio (por ejemplo, "Completado", "En proceso", etc.)
 }

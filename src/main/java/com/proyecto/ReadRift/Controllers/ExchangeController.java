@@ -3,19 +3,12 @@ package com.proyecto.ReadRift.Controllers;
 import com.proyecto.ReadRift.dtos.ExchangeResponseDto;
 import com.proyecto.ReadRift.mappers.ExchangeMapper;
 import com.proyecto.ReadRift.models.Exchange;
-import com.proyecto.ReadRift.models.ExchangeStatus;
-import com.proyecto.ReadRift.models.user.User;
 import com.proyecto.ReadRift.services.ExchangeService;
 import com.proyecto.ReadRift.services.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/exchanges")
@@ -23,40 +16,36 @@ import java.util.stream.Collectors;
 public class ExchangeController {
 
     private final ExchangeService exchangeService;
-    private final UserDetailsServiceImpl userService;
     private final ExchangeMapper exchangeMapper;
 
+    @GetMapping
+    public ResponseEntity<List<ExchangeResponseDto>> getExchanges() {
+        // Suponiendo que tienes un método para obtener un usuario por ID en tu servicio de usuario
+        List<Exchange> exchanges = exchangeService.findAll(); //Mirar User
 
-
-
+        return ResponseEntity.ok(exchangeMapper.toResponse(exchanges));
+    }
     @GetMapping("/borrower/{borrowerId}")
-    public ResponseEntity<List<ExchangeResponseDto>> getExchangesByBorrower(@PathVariable User borrowerId) {
+    public ResponseEntity<List<ExchangeResponseDto>> getExchangesByBorrower(@PathVariable Long borrowerId) {
         // Suponiendo que tienes un método para obtener un usuario por ID en tu servicio de usuario
         List<Exchange> exchanges = exchangeService.findByBorrower(borrowerId); //Mirar User
-        List<ExchangeResponseDto> exchangeResponseDtos = exchanges.stream()
-                .map(this::convertToDto)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(exchangeResponseDtos);
+
+        return ResponseEntity.ok(exchangeMapper.toResponse(exchanges));
     }
 
     @GetMapping("/donor/{donorId}")
     public ResponseEntity<List<ExchangeResponseDto>> getExchangesByDonor(@PathVariable Long donorId) {
         // Suponiendo que tienes un método para obtener un usuario por ID en tu servicio de usuario
-        User user= userService.findById(donorId);
-        List<Exchange> exchanges = exchangeService.findByDonor(user);
-        List<ExchangeResponseDto> exchangeResponseDtos = exchanges.stream()
-                .map(this::convertToDto)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(exchangeResponseDtos);
+        List<Exchange> exchanges = exchangeService.findByDonor(donorId);
+
+        return ResponseEntity.ok(exchangeMapper.toResponse(exchanges));
     }
 
     @GetMapping("/status/{status}")
-    public ResponseEntity<List<ExchangeResponseDto>> getExchangesByStatus(@PathVariable ExchangeStatus status) {
+    public ResponseEntity<List<ExchangeResponseDto>> getExchangesByStatus(@PathVariable String status) {
         List<Exchange> exchanges = exchangeService.findByStatus(status);
-        List<ExchangeResponseDto> exchangeResponseDtos = exchanges.stream()
-                .map(this::convertToDto)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(exchangeResponseDtos);
+
+        return ResponseEntity.ok(exchangeMapper.toResponse(exchanges));
     }
 
   /*  @GetMapping("/requestDate/{requestDate}")
@@ -66,10 +55,5 @@ public class ExchangeController {
     }*/
 
 
-    // Método para convertir un objeto Exchange a ExchangeResponseDto
-    private ExchangeResponseDto convertToDto(Exchange exchange) {
-        ExchangeResponseDto exchangeResponseDto = new ExchangeResponseDto();
-        BeanUtils.copyProperties(exchange, exchangeResponseDto);
-        return exchangeResponseDto;
-    }
+
 }

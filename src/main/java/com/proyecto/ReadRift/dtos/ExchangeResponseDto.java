@@ -16,6 +16,7 @@ public class ExchangeResponseDto {
     private UUID uuid;
     private Long borrower_id; // usuario que solicita el préstamo
     private Long donor_id; //  usuario que dona los libros
+    private Long book_id;
 //private LocalDateTime req_date; // Fecha de solicitud de préstamo
     private ExchangeStatus status; // Estado del intercambio
 }

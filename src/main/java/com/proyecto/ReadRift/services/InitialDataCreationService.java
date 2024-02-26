@@ -1,4 +1,5 @@
 package com.proyecto.ReadRift.services;
+import com.proyecto.ReadRift.models.ExchangeStatus;
 import com.proyecto.ReadRift.models.user.User;
 import com.proyecto.ReadRift.models.Book;
 import com.proyecto.ReadRift.models.Exchange;
@@ -16,13 +17,16 @@ import java.util.UUID;
 
 public class InitialDataCreationService {
     private final BookService bookService;
-    private final ExchangeService productService;
+    private final ExchangeService exchangeService;
     private final UserDetailsServiceImpl userDetailsService;
     private final Faker faker = new Faker(new Locale("en-US"));
 
-    public void createDefaultAdminUser() {
-        User user = new User("user", "$2a$12$K4tojeaYWMK55KzWzDWtLOuuUjRTkycWhSGHYWA2LXMZqmZUtuXPO"); // Esto es "password" codificado con bcrypt)
-        userDetailsService.save(user);
+    public void createDefaultUser(int number) {
+        if(number <= 0) return;
+        for (int i = 0; i < number; i++) {
+            User user = new User("user"+i, "$2a$12$K4tojeaYWMK55KzWzDWtLOuuUjRTkycWhSGHYWA2LXMZqmZUtuXPO"); // Esto es "password" codificado con bcrypt)
+            userDetailsService.save(user);
+        }
     }
 
     public void createFakeBooks(int number) {
@@ -45,29 +49,24 @@ public class InitialDataCreationService {
             bookService.save(book);
         }
     }
-  /*  public void createFakeExchanges(int number) {
+    public void createFakeExchanges(int number) {
         if(number <= 0) return;
-        List<Boook> categories = bookService.findAll();
+        List<User> users = userDetailsService.findAll();
+        List<Book> books = bookService.findAll();
+        String[] statusValues = {"PENDING", "APPROVED", "COMPLETED", "CANCELLED"};
+        int randomIndex = faker.number().numberBetween(0, statusValues.length);
+
 
         for (int i = 0; i < number; i++) {
-            int categoryIndex = faker.number().numberBetween(0, categories.size());
-            Category category = categories.get(categoryIndex);
-            Product product = new Product(
+            Exchange exchange = new Exchange(
                     null,
                     UUID.randomUUID(),
-                    faker.commerce().productName(),
-                    Math.random() <0.50 ? faker.lorem().sentence(10) : null,
-                    faker.number().randomDouble(1, 0, 2),
-                    LocalDateTime.now(),
-                    faker.bool().bool(),
-                    LocalDateTime.now(),
-                    faker.bool().bool(),
-                    LocalDateTime.now(),
-                    category,
-                    LocalDateTime.now(),
-                    LocalDateTime.now()
+                    userDetailsService.findById((long) faker.number().numberBetween(1,users.size())),
+                    userDetailsService.findById((long) faker.number().numberBetween(1,users.size())),
+                    bookService.findById((long) faker.number().numberBetween(1,books.size())),
+                    ExchangeStatus.valueOf(statusValues[randomIndex])
             );
-            productService.save(product);
+            exchangeService.save(exchange);
         }
-    }*/
+    }
 }

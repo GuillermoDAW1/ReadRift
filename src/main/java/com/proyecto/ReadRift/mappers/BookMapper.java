@@ -3,6 +3,7 @@ package com.proyecto.ReadRift.mappers;
 import com.proyecto.ReadRift.dtos.BookRequestDto;
 import com.proyecto.ReadRift.dtos.BookResponseDto;
 import com.proyecto.ReadRift.models.Book;
+import com.proyecto.ReadRift.models.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,12 +15,6 @@ import java.util.stream.Collectors;
 @Component
 public class BookMapper {
 
-    private final ExchangeMapper exchangeMapper;
-
-    @Autowired
-    public BookMapper(ExchangeMapper exchangeMapper) {
-        this.exchangeMapper = exchangeMapper;
-    }
 
     public BookResponseDto toResponse(Book book) {
         return new BookResponseDto(
@@ -45,7 +40,7 @@ public class BookMapper {
 
    public Book toModel(BookRequestDto bookRequestDto) {
         return new Book(
-                0L,
+                null,
                 UUID.randomUUID(),
                 bookRequestDto.getAuthor(),
                 bookRequestDto.getTitle(),

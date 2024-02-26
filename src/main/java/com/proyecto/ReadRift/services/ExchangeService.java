@@ -7,9 +7,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ExchangeService {
-    List<Exchange> findByBorrower(User borrower);
-    List<Exchange> findByDonor(User donor);
-    List<Exchange> findByStatus(ExchangeStatus status);
-   // Exchange findByRequestDate(LocalDateTime requestDate);
+    List<Exchange> findByBorrower(Long borrowerId);
+    List<Exchange> findByDonor(Long donorId);
+    List<Exchange> findByBook(Long bookId);
+    List<Exchange> findByStatus(String status);
+
+    Exchange save(Exchange exchange);
+
+    List<Exchange> findAll();
+    // Exchange findByRequestDate(LocalDateTime requestDate);
 
 }

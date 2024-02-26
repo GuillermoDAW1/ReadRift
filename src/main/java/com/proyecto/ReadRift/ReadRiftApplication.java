@@ -31,8 +31,8 @@ public class ReadRiftApplication {
 	@Bean
 	public CommandLineRunner init(InitialDataCreationService service) {
 		return args -> {
-			service.createDefaultAdminUser();
-			service.createFakeBooks(100);
-			//service.createFakeExchanges(10);
+			service.createDefaultUser(10);
+			service.createFakeBooks(50);
+			service.createFakeExchanges(20);
 		};}
 }
