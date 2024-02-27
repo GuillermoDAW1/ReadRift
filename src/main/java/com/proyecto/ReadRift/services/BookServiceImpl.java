@@ -124,8 +124,4 @@ public class BookServiceImpl implements BookService {
         return (Book) bookRepository.findByIsbn(isbn);
     }
 
-    @Override
-    public List<Book> findByOwner(User owner) {
-        return bookRepository.findByOwner(owner);
-    }
 }

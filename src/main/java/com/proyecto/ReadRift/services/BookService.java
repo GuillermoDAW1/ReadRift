@@ -30,6 +30,6 @@ public interface BookService {
 
     Book findByIsbn(String isbn);
 
-    List<Book> findByOwner(User owner);
+   // List<Book> findByOwner(User owner);
 }
 
