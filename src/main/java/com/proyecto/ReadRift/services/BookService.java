@@ -27,7 +27,7 @@ public interface BookService {
 
     List<Book> findByAvailableTrue();
 
-    List<Book> findByIsbn(String isbn);
+    Book findByIsbn(String isbn);
 
     List<Book> findByOwner(User owner);
 }

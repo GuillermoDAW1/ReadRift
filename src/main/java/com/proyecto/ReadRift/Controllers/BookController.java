@@ -137,7 +137,7 @@ public class BookController {
 
     @GetMapping("/isbn/{isbn}")
     public ResponseEntity<BookResponseDto> getBookByIsbn(@PathVariable String isbn) {
-        Book book = (Book) bookService.findByIsbn(isbn);
+        Book book = bookService.findByIsbn(isbn);
         if (book != null) {
             BookResponseDto bookResponseDto = bookMapper.toResponse(book);
             return ResponseEntity.ok(bookResponseDto);

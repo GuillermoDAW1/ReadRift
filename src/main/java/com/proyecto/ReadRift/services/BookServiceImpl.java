@@ -99,8 +99,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> findByIsbn(String isbn) {
-        return (List<Book>) bookRepository.findByIsbn(isbn);
+    public Book findByIsbn(String isbn) {
+        return (Book) bookRepository.findByIsbn(isbn);
     }
 
     @Override

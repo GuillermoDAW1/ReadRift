@@ -53,18 +53,17 @@ public class InitialDataCreationService {
         if(number <= 0) return;
         List<User> users = userDetailsService.findAll();
         List<Book> books = bookService.findAll();
-        String[] statusValues = {"PENDING", "APPROVED", "COMPLETED", "CANCELLED"};
-        int randomIndex = faker.number().numberBetween(0, statusValues.length);
-
+        ExchangeStatus[] statusValues = ExchangeStatus.values(); // Obtener todos los valores de ExchangeStatus
 
         for (int i = 0; i < number; i++) {
+            ExchangeStatus randomStatus = statusValues[faker.number().numberBetween(0, statusValues.length)]; // Seleccionar un estado aleatorio
             Exchange exchange = new Exchange(
                     null,
                     UUID.randomUUID(),
                     userDetailsService.findById((long) faker.number().numberBetween(1,users.size())),
                     userDetailsService.findById((long) faker.number().numberBetween(1,users.size())),
                     bookService.findById((long) faker.number().numberBetween(1,books.size())),
-                    ExchangeStatus.valueOf(statusValues[randomIndex])
+                    randomStatus // Utilizar el estado aleatorio
             );
             exchangeService.save(exchange);
         }

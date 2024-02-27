@@ -20,7 +20,7 @@ public interface ExchangeRepository extends JpaRepository<Exchange, Long> {
     List<Exchange> findByBook_Id(Long book);
 
     // Buscar intercambios por estado
-    List<Exchange> findByStatus(String status);
+    List<Exchange> findByStatus(ExchangeStatus status);
 
     // Buscar intercambios por fecha de solicitud
 //    Exchange findByReqst_date(LocalDateTime requestDate);

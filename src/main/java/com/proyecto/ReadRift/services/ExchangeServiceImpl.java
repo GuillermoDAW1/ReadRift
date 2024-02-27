@@ -33,7 +33,7 @@ public class ExchangeServiceImpl implements ExchangeService {
     }
 
     @Override
-    public List<Exchange> findByStatus(String status) {
+    public List<Exchange> findByStatus(ExchangeStatus status) {
         return exchangeRepository.findByStatus(status);
     }
 
@@ -41,6 +41,8 @@ public class ExchangeServiceImpl implements ExchangeService {
     public Exchange save(Exchange exchange) {
         return exchangeRepository.save(exchange);
     }
+
+    
     @Override
     public List<Exchange> findAll() {
         return exchangeRepository.findAll();

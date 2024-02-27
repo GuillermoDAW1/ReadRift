@@ -10,7 +10,7 @@ public interface ExchangeService {
     List<Exchange> findByBorrower(Long borrowerId);
     List<Exchange> findByDonor(Long donorId);
     List<Exchange> findByBook(Long bookId);
-    List<Exchange> findByStatus(String status);
+    List<Exchange> findByStatus(ExchangeStatus status);
 
     Exchange save(Exchange exchange);
 
