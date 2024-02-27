@@ -17,7 +17,8 @@ public interface BookService {
    // List<Book> searchBooks(String title, String author, String areaOfStudy);
     Book updateAvailability(Long id, Boolean available);
     Book getBookDetails(Long id);
-    List<Book> getBookHistory(Long id);
+
+    List<Book> searchBooks(String title, String author, String isbn);
 
     List<Book> findByAuthor(String author);
 

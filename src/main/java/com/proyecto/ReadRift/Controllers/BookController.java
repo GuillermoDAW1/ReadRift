@@ -3,7 +3,6 @@ package com.proyecto.ReadRift.Controllers;
 import com.proyecto.ReadRift.dtos.BookRequestDto;
 import com.proyecto.ReadRift.dtos.BookResponseDto;
 import com.proyecto.ReadRift.models.Book;
-import com.proyecto.ReadRift.models.user.User;
 import com.proyecto.ReadRift.services.BookService;
 import com.proyecto.ReadRift.mappers.BookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,12 +74,18 @@ public class BookController {
     }
 
     @PatchMapping("/{id}/availability")
-    public ResponseEntity<BookResponseDto> updateBookAvailability(@PathVariable Long id, @RequestParam Boolean available) {
-        Book book = bookService.updateAvailability(id, available);
-        if (book != null) {
-            BookResponseDto bookResponseDto = bookMapper.toResponse(book);
+    public ResponseEntity<BookResponseDto> updateBookAvailability(
+            @PathVariable Long id,
+            @RequestParam Boolean available) {
+        // Llama al método del servicio para actualizar la disponibilidad del libro
+        Book updatedBook = bookService.updateAvailability(id, available);
+
+        if (updatedBook != null) {
+            // Si el libro se actualiza correctamente, devuelve una respuesta con el libro actualizado
+            BookResponseDto bookResponseDto = bookMapper.toResponse(updatedBook);
             return ResponseEntity.ok(bookResponseDto);
         } else {
+            // Si el libro no se encuentra, devuelve una respuesta notFound
             return ResponseEntity.notFound().build();
         }
     }
@@ -99,14 +104,6 @@ public class BookController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    @GetMapping("/{id}/history")
-    public ResponseEntity<List<BookResponseDto>> getBookHistory(@PathVariable Long id) {
-        List<Book> bookHistory = bookService.getBookHistory(id);
-        List<BookResponseDto> bookHistoryResponseDto = bookMapper.toResponse(bookHistory);
-        return ResponseEntity.ok(bookHistoryResponseDto);
-    }
-
     @GetMapping("/author/{author}")
     public ResponseEntity<List<BookResponseDto>> getBooksByAuthor(@PathVariable String author) {
         List<Book> booksByAuthor = bookService.findByAuthor(author);
@@ -144,7 +141,9 @@ public class BookController {
         } else {
             return ResponseEntity.notFound().build();
         }
-    } @GetMapping("/owner/{ownerId}")
+    }
+
+    /*@GetMapping("/owner/{ownerId}")
     public ResponseEntity<List<Book>> getBooksByOwner(@PathVariable Long ownerId) {
         User owner = new User();
         owner.setId(ownerId); // Suponiendo que tengas un método para obtener un usuario por ID en tu servicio de usuario
@@ -154,6 +153,14 @@ public class BookController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }*/
+    @GetMapping("/search")
+    public ResponseEntity<List<BookResponseDto>> searchBooks(@RequestParam(required = false) String title,
+                                                             @RequestParam(required = false) String author,
+                                                             @RequestParam(required = false) String isbn) {
+        List<Book> foundBooks = bookService.searchBooks(title, author, isbn);
+        List<BookResponseDto> bookResponseDtos = bookMapper.toResponse(foundBooks);
+        return ResponseEntity.ok(bookResponseDtos);
     }
 
 }

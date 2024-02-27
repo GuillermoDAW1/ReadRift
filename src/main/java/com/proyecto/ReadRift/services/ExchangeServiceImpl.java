@@ -42,11 +42,12 @@ public class ExchangeServiceImpl implements ExchangeService {
         return exchangeRepository.save(exchange);
     }
 
-    
+
     @Override
     public List<Exchange> findAll() {
         return exchangeRepository.findAll();
     }
+
 
    /* @Override
     public Exchange findByRequestDate(LocalDateTime requestDate) {
