@@ -2,11 +2,10 @@ package com.proyecto.ReadRift.services;
 
 import com.proyecto.ReadRift.models.Exchange;
 import com.proyecto.ReadRift.models.ExchangeStatus;
-import com.proyecto.ReadRift.models.user.User;
 import com.proyecto.ReadRift.repositories.ExchangeRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+
 import java.util.List;
 
 @Service
