@@ -27,12 +27,6 @@ public class BookController {
         this.bookMapper = bookMapper;
     }
 
-    @GetMapping("/{email}")
-    public ResponseEntity<List<Book>> getOrderByUser(
-            @PathVariable String email
-    ){
-        return ResponseEntity.ok(this.bookService.findByUser(email));
-    }
     @PostMapping
     public ResponseEntity<BookResponseDto> createBook(@RequestBody BookRequestDto bookRequestDto) {
         Book book = bookService.save(bookMapper.toModel(bookRequestDto));

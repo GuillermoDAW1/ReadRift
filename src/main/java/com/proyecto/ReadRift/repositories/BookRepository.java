@@ -22,7 +22,5 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     List<Book> findByTitleAndAuthor(String title, String author);
 
-    List<Book> findByUser_Email(String userEmail);
-
     // Puedes agregar métodos personalizados de consulta si es necesario
 }
