@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/exchanges")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequiredArgsConstructor
 public class ExchangeController {
 

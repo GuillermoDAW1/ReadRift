@@ -49,6 +49,9 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers(mvc.pattern("/api/auth/login")).permitAll()
                         .requestMatchers(mvc.pattern("/api/auth/signup")).permitAll()
+                        .requestMatchers(mvc.pattern("/api/books")).permitAll()
+
+
                         .requestMatchers(h2ConsoleMatcher).permitAll()
                         .anyRequest().authenticated()
                 )
