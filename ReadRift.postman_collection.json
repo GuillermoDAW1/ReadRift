@@ -1,0 +1,661 @@
+{
+	"info": {
+		"_postman_id": "82659dce-013d-471e-885e-cb315a2a54d4",
+		"name": "ReadRift",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33181368",
+		"_collection_link": "https://lunar-flare-946572.postman.co/workspace/ReadRift~f0bd8c14-08b4-408f-81ba-41184342c583/collection/33181368-82659dce-013d-471e-885e-cb315a2a54d4?action=share&source=collection_link&creator=33181368"
+	},
+	"item": [
+		{
+			"name": "LOGIN",
+			"item": [
+				{
+					"name": "LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"user1\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BOOK",
+			"item": [
+				{
+					"name": "BY ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTM1NzE1fQ.uT7fJ7kmLd8PkWNG4We8v6WpYLNty8Iieqke0DAa_3U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTM1NzE1fQ.uT7fJ7kmLd8PkWNG4We8v6WpYLNty8Iieqke0DAa_3U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BY UUID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTQwMzc3fQ.J0VVUP4eiApGOhyiLaCrsCdUXI4wv493y1u65mKHlHs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/uuid/a030622a-cf22-469e-9d37-7cf67c076eb4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"uuid",
+								"a030622a-cf22-469e-9d37-7cf67c076eb4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTQwMzc3fQ.J0VVUP4eiApGOhyiLaCrsCdUXI4wv493y1u65mKHlHs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"author\": \"Gabriel García Márquez\",\r\n    \"title\": \"Cien años de soledad\",\r\n    \"description\": \"Una obra maestra de la literatura latinoamericana que narra la historia de la familia Buendía en el pueblo ficticio de Macondo.\",\r\n    \"condition\": \"Nuevo\",\r\n    \"available\": true,\r\n    \"url_image\": \"https://example.com/cien-anos-de-soledad.jpg\",\r\n    \"isbn\": \"9780307350482\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTQwMzc3fQ.J0VVUP4eiApGOhyiLaCrsCdUXI4wv493y1u65mKHlHs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"author\": \"J.K. Rowling\",\r\n    \"title\": \"Harry Potter and the Chamber of Secrets\",\r\n    \"description\": \"The second book in the Harry Potter series, where Harry returns to Hogwarts for his second year and encounters the mysterious Chamber of Secrets.\",\r\n    \"condition\": \"Nuevo\",\r\n    \"available\": true,\r\n    \"url_image\": \"https://example.com/harry-potter-chamber-of-secrets.jpg\",\r\n    \"isbn\": \"9780545791328\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/books/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTQwMzc3fQ.J0VVUP4eiApGOhyiLaCrsCdUXI4wv493y1u65mKHlHs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/books/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DETAILS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTQwMzc3fQ.J0VVUP4eiApGOhyiLaCrsCdUXI4wv493y1u65mKHlHs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/7/details",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"7",
+								"details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BY AUTHOR",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTQwMzc3fQ.J0VVUP4eiApGOhyiLaCrsCdUXI4wv493y1u65mKHlHs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/author/Kendrick Koch",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"author",
+								"Kendrick Koch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BY TITLE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTQwMzc3fQ.J0VVUP4eiApGOhyiLaCrsCdUXI4wv493y1u65mKHlHs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/title/Alone on a Wide, Wide Sea",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"title",
+								"Alone on a Wide, Wide Sea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BY CONDITION",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTQwMzc3fQ.J0VVUP4eiApGOhyiLaCrsCdUXI4wv493y1u65mKHlHs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/condition/New",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"condition",
+								"New"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BY AVAILABLE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTQwMzc3fQ.J0VVUP4eiApGOhyiLaCrsCdUXI4wv493y1u65mKHlHs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/available",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"available"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BY ISBN",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTQyMzk5fQ.JsbjSw96g36asxpiRR-feyYwtuKJIuytdFGACTbGSAM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/isbn/0013670018",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"isbn",
+								"0013670018"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BY PARMS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTU2MTgxfQ.XPkiN1KcKmw3K_pzRczC2uaNbHb0Cq8g2emQjZx2FtI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/search?author=Shonna Torphy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"search"
+							],
+							"query": [
+								{
+									"key": "author",
+									"value": "Shonna Torphy"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTU3MjcyfQ.FtHSr3fDEhr3uI518s2tNPjzrFdFD8Eo2kgiQFXW2NI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/6/availability?available=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"6",
+								"availability"
+							],
+							"query": [
+								{
+									"key": "available",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EXCHANGE",
+			"item": [
+				{
+					"name": "GET ALL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTQyMzk5fQ.JsbjSw96g36asxpiRR-feyYwtuKJIuytdFGACTbGSAM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/exchanges",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"exchanges"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BY BORROWER_ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTQyMzk5fQ.JsbjSw96g36asxpiRR-feyYwtuKJIuytdFGACTbGSAM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/exchanges/borrower/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"exchanges",
+								"borrower",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BY DONOR_ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTQyMzk5fQ.JsbjSw96g36asxpiRR-feyYwtuKJIuytdFGACTbGSAM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/exchanges/donor/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"exchanges",
+								"donor",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BY STATUS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZWFkcmlmdCIsInN1YiI6InVzZXIxIiwiZXhwIjoxNzA5MTQzNzgzfQ.S-WrcEpCUyvz5UodzksAE12cnBZ4c7pLECRSb4yjXO0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/exchanges/status/APPROVED",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"exchanges",
+								"status",
+								"APPROVED"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
