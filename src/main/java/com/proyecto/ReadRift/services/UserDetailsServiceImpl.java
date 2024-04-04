@@ -1,5 +1,7 @@
 package com.proyecto.ReadRift.services;
 
+import com.proyecto.ReadRift.auth.SignupRequest;
+import com.proyecto.ReadRift.models.user.Role;
 import com.proyecto.ReadRift.models.user.User;
 import com.proyecto.ReadRift.repositories.UserDetailsRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public User loadUserByUsername(String email) throws UsernameNotFoundException {
         return userDetailsRepository.findByEmail(email);
     }
+    public User create(SignupRequest signupRequest){
+        User user = new User(
+                null,
+                signupRequest.getFirstname(),
+                signupRequest.getLastname(),
+                signupRequest.getEmail(),
+                passwordEncoder.encode(signupRequest.getPassword()),
+                Role.USER
+        );
+        this.save(user);
+        return user;
+    }
 
     public User save(User user){
         return userDetailsRepository.save(user);
@@ -35,6 +49,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         userDetailsRepository.save(userUpdated);
         return userUpdated;
     }
+    public boolean exixtsUser(String email){ return userDetailsRepository.existsByEmail(email); }
+
     public User findById(Long id){
         return userDetailsRepository.findById(id).get();
     }

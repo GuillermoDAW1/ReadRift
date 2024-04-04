@@ -4,6 +4,7 @@ import java.util.Map;
 import com.proyecto.ReadRift.auth.LoginRequest;
 import com.proyecto.ReadRift.auth.JwtService;
 import com.proyecto.ReadRift.auth.SignupRequest;
+import com.proyecto.ReadRift.models.user.User;
 import com.proyecto.ReadRift.services.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -35,11 +36,13 @@ public class AuthController {
                 ))
         );
     }
-//    @PostMapping("/signup")
-//    public ResponseEntity<UserDetails> signup(@RequestBody SignupRequest signupRequest) {
-//        return ResponseEntity.ok(
-//                jwtService.createToken(authentication.getName())
-//                userDetailsService.create(signupRequest) //pasar por mapper
-//        );
-//    }
+    @PostMapping("/signup")
+    public ResponseEntity<?> signup(
+            @RequestBody SignupRequest signupRequest
+    ) {
+        if(userDetailsService.exixtsUser(signupRequest.getEmail())) return ResponseEntity.badRequest().build();
+
+        User user = userDetailsService.create(signupRequest);
+        return ResponseEntity.ok(Map.of("token", jwtService.createToken(user.getEmail())));
+    }
 }

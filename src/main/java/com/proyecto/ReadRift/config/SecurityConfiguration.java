@@ -50,6 +50,8 @@ public class SecurityConfiguration {
                         .requestMatchers(mvc.pattern("/api/auth/login")).permitAll()
                         .requestMatchers(mvc.pattern("/api/auth/signup")).permitAll()
                         .requestMatchers(mvc.pattern("/api/books")).permitAll()
+                        .requestMatchers(mvc.pattern("/api/exchanges")).permitAll()
+
 
 
                         .requestMatchers(h2ConsoleMatcher).permitAll()
