@@ -1,4 +1,5 @@
 package com.proyecto.ReadRift.services;
+import com.proyecto.ReadRift.models.BookReview;
 import com.proyecto.ReadRift.models.ExchangeStatus;
 import com.proyecto.ReadRift.models.user.User;
 import com.proyecto.ReadRift.models.Book;
@@ -17,6 +18,7 @@ import java.util.UUID;
 
 public class InitialDataCreationService {
     private final BookService bookService;
+    private final BookReviewService bookReviewService;
     private final ExchangeService exchangeService;
     private final UserDetailsServiceImpl userDetailsService;
     private final Faker faker = new Faker(new Locale("en-US"));
@@ -66,6 +68,29 @@ public class InitialDataCreationService {
                     randomStatus // Utilizar el estado aleatorio
             );
             exchangeService.save(exchange);
+        }
+    }
+    public void createFakeBookReviews(int number) {
+        if(number <= 0) return;
+
+        List<User> users = userDetailsService.findAll();
+        List<Book> books = bookService.findAll();
+
+        for (int i = 0; i < number; i++) {
+            BookReview review = new BookReview();
+
+            // Seleccionar un libro y un usuario (como autor) aleatorios
+            Book selectedBook = books.get(faker.number().numberBetween(0, books.size()));
+            User author = users.get(faker.number().numberBetween(0, users.size()));
+
+            // Configurar la reseña
+            review.setBook(selectedBook);
+            review.setAuthor(author); // Establecer el autor de la reseña
+            review.setRating(faker.number().numberBetween(1, 6)); // Generar una calificación aleatoria entre 1 y 5
+            review.setComment(faker.lorem().sentence());
+
+            // Guardar la reseña
+            bookReviewService.save(review); // Ajusta esto según cómo tu servicio maneje la creación de reseñas
         }
     }
 }

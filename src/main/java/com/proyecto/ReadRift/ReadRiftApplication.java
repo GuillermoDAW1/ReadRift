@@ -34,5 +34,6 @@ public class ReadRiftApplication {
 			service.createDefaultUser(10);
 			service.createFakeBooks(50);
 			service.createFakeExchanges(20);
+			service.createFakeBookReviews(10);
 		};}
 }
