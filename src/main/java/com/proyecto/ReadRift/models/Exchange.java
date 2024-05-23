@@ -19,7 +19,6 @@ public class Exchange {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private UUID uuid;
     @ManyToOne
     private User borrower; // Usuario que solicita el préstamo
     @ManyToOne

@@ -4,6 +4,7 @@ import com.proyecto.ReadRift.dtos.BookRequestDto;
 import com.proyecto.ReadRift.dtos.BookResponseDto;
 import com.proyecto.ReadRift.models.Book;
 import com.proyecto.ReadRift.models.user.User;
+import com.proyecto.ReadRift.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,8 @@ import java.util.stream.Collectors;
 
 @Component
 public class BookMapper {
+    @Autowired
+    private BookRepository bookRepository;
 
 
     public BookResponseDto toResponse(Book book) {
@@ -52,5 +55,9 @@ public class BookMapper {
                 LocalDateTime.now()
 
         );
+    }
+    public Book toModel(Long bookId) {
+        return bookRepository.findById(bookId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid book ID: " + bookId));
     }
     }

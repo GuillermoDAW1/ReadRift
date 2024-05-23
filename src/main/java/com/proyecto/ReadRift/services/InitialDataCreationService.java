@@ -60,7 +60,6 @@ public class InitialDataCreationService {
             ExchangeStatus randomStatus = statusValues[faker.number().numberBetween(0, statusValues.length)]; // Seleccionar un estado aleatorio
             Exchange exchange = new Exchange(
                     null,
-                    UUID.randomUUID(),
                     userDetailsService.findById((long) faker.number().numberBetween(1,users.size())),
                     userDetailsService.findById((long) faker.number().numberBetween(1,users.size())),
                     bookService.findById((long) faker.number().numberBetween(1,books.size())),
