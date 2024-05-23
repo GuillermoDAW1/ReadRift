@@ -16,8 +16,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     Book findByIsbn(String isbn);
     List<Book> findByOwner(User owner);
 
-    Book findByUuid(UUID uuid);
-
     List<Book> findByTitleAndAuthorAndIsbn(String title, String author, String isbn);
 
     List<Book> findByTitleAndAuthor(String title, String author);

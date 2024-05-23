@@ -20,10 +20,11 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private UUID uuid;
     private String author;
     private String title;
     private String description; // Agregamos una descripción del libro
+
+    @Column(name = "`condition`")
     private String condition;
     private Boolean available;
     private String url_image;

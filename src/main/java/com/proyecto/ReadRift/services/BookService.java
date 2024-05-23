@@ -9,7 +9,6 @@ import java.util.UUID;
 public interface BookService {
 
     Book findById(Long id);
-    Book findByUuid(UUID uuid);
     void deleteById(Long id);
     Book save(Book book);
     Book update(Long id, Book book);

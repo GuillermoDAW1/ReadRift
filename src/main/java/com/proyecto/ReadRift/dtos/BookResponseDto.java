@@ -10,7 +10,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class BookResponseDto {
     private final Long id;
-    private final UUID uuid;
     private final String author;
     private final String title;
     private final String description;

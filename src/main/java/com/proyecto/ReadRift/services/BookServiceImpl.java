@@ -24,10 +24,6 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findById(id).orElse(null);
     }
 
-    @Override
-    public Book findByUuid(UUID uuid) {
-        return bookRepository.findByUuid(uuid);
-    }
 
     @Override
     public void deleteById(Long id) {

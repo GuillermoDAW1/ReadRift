@@ -28,12 +28,12 @@ public class ReadRiftApplication {
 	}
 
 
-	@Bean
+	/*@Bean
 	public CommandLineRunner init(InitialDataCreationService service) {
 		return args -> {
 			service.createDefaultUser(10);
 			service.createFakeBooks(50);
 			service.createFakeExchanges(20);
 			service.createFakeBookReviews(10);
-		};}
+		};}*/
 }

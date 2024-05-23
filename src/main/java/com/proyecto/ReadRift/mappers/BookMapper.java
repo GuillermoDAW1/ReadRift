@@ -19,7 +19,6 @@ public class BookMapper {
     public BookResponseDto toResponse(Book book) {
         return new BookResponseDto(
                 book.getId(),
-                book.getUuid(),
                 book.getAuthor(),
                 book.getTitle(),
                 book.getDescription(),
@@ -41,7 +40,6 @@ public class BookMapper {
    public Book toModel(BookRequestDto bookRequestDto) {
         return new Book(
                 null,
-                UUID.randomUUID(),
                 bookRequestDto.getAuthor(),
                 bookRequestDto.getTitle(),
                 bookRequestDto.getDescription(),

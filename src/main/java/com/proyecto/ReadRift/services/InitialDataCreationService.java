@@ -36,7 +36,6 @@ public class InitialDataCreationService {
         for (int i = 0; i < number; i++) {
             Book book = new Book(
                     null,
-                UUID.randomUUID(),
             faker.book().author(),
             faker.book().title(),
             faker.lorem().characters(255),

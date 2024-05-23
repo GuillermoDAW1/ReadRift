@@ -44,16 +44,6 @@ public class BookController {
             return ResponseEntity.notFound().build();
         }
     }
-    @GetMapping("/uuid/{uuid}")
-    public ResponseEntity<BookResponseDto> getBookByUuid(@PathVariable UUID uuid) {
-        Book book = bookService.findByUuid(uuid);
-        if (book != null) {
-            BookResponseDto bookResponseDto = bookMapper.toResponse(book);
-            return ResponseEntity.ok(bookResponseDto);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
 
     @PutMapping("/{id}")
     public ResponseEntity<BookResponseDto> updateBook(@PathVariable Long id, @RequestBody BookRequestDto bookRequestDto) {
