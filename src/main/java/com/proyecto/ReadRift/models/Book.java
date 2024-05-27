@@ -30,8 +30,7 @@ public class Book {
     private String url_image;
     private String isbn;
 
-    @ManyToOne
-    private User owner; // Cambiamos el nombre de 'user' a 'owner' para reflejar el propietario del libro
+    private Long owner_id;
 
     @CreatedDate
     private LocalDateTime createdAt;

@@ -52,6 +52,8 @@ public class SecurityConfiguration {
                         .requestMatchers(mvc.pattern("/api/books/**")).permitAll()
                         .requestMatchers(mvc.pattern("/api/exchanges/**")).permitAll()
                         .requestMatchers(mvc.pattern("/api/book-reviews/**")).permitAll()
+                        .requestMatchers(mvc.pattern("/api/user/**")).permitAll()
+
 
 
 

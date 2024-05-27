@@ -22,7 +22,7 @@ public class InitialDataCreationService {
     private final ExchangeService exchangeService;
     private final UserDetailsServiceImpl userDetailsService;
     private final Faker faker = new Faker(new Locale("en-US"));
-
+/*
     public void createDefaultUser(int number) {
         if(number <= 0) return;
         for (int i = 0; i < number; i++) {
@@ -90,5 +90,5 @@ public class InitialDataCreationService {
             // Guardar la reseña
             bookReviewService.save(review); // Ajusta esto según cómo tu servicio maneje la creación de reseñas
         }
-    }
+    }*/
 }

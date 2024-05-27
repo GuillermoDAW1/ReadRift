@@ -3,6 +3,7 @@ package com.proyecto.ReadRift.Controllers;
 import com.proyecto.ReadRift.dtos.BookRequestDto;
 import com.proyecto.ReadRift.dtos.BookResponseDto;
 import com.proyecto.ReadRift.models.Book;
+import com.proyecto.ReadRift.models.user.User;
 import com.proyecto.ReadRift.services.BookService;
 import com.proyecto.ReadRift.mappers.BookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,7 +117,7 @@ public class BookController {
         return ResponseEntity.ok(bookResponseDtos);
     }
 
-    @GetMapping("/available")
+    @GetMapping("/available/{true}")
     public ResponseEntity<List<BookResponseDto>> getAvailableBooks() {
         List<Book> availableBooks = bookService.findByAvailableTrue();
         List<BookResponseDto> bookResponseDtos = bookMapper.toResponse(availableBooks);
@@ -136,15 +137,16 @@ public class BookController {
 
     /*@GetMapping("/owner/{ownerId}")
     public ResponseEntity<List<Book>> getBooksByOwner(@PathVariable Long ownerId) {
-        User owner = new User();
+        Long owner_id = new User();
         owner.setId(ownerId); // Suponiendo que tengas un método para obtener un usuario por ID en tu servicio de usuario
-        List<Book> books = bookService.findByOwner(owner);
+        List<Book> books = bookService.findByOwner(owner_id);
         if (books != null && !books.isEmpty()) {
             return new ResponseEntity<>(books, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }*/
+
     @GetMapping("/search")
     public ResponseEntity<List<BookResponseDto>> searchBooks(@RequestParam(required = false) String title,
                                                              @RequestParam(required = false) String author,

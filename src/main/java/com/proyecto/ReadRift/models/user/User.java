@@ -30,7 +30,8 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER; // Por defecto
 
-    public User(String email, String password) {
+    public User(String firstname, String email, String password) {
+        this.firstname = firstname;
         this.email = email;
         this.password = password;
     }

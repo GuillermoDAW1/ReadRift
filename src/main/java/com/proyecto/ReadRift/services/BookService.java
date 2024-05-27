@@ -21,6 +21,8 @@ public interface BookService {
 
     List<Book> findByAuthor(String author);
 
+    //List<Book> findByOwner(Long owner_id);
+
     List<Book> findByTitle(String title);
 
     List<Book> findByCondition(String condition);
@@ -29,6 +31,5 @@ public interface BookService {
 
     Book findByIsbn(String isbn);
 
-   // List<Book> findByOwner(User owner);
 }
 

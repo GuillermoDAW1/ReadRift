@@ -100,6 +100,9 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findByAuthor(author);
     }
 
+    //@Override
+    //public List<Book> findByOwner(Long owner_id) { return bookRepository.findByOwner(owner_id);}
+
     @Override
     public List<Book> findByTitle(String title) {
         return bookRepository.findByTitle(title);
