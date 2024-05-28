@@ -7,6 +7,8 @@ import com.proyecto.ReadRift.models.user.User;
 import com.proyecto.ReadRift.services.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,6 +26,18 @@ public class UserController {
         return ResponseEntity.ok(userMapper.toResponse(userService.loadUserByUsername(email)));
     }
 
+    @GetMapping("/token")
+    public ResponseEntity<UserResponseDto> getUserByToken() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();  // asumiendo que el principal es el email del usuario
+        User user = userService.loadUserByUsername(email);
+        if (user != null) {
+            UserResponseDto userResponseDto = userMapper.toResponse(user);
+            return ResponseEntity.ok(userResponseDto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
     @PostMapping
     public ResponseEntity<UserResponseDto> postUser(
             @RequestBody UserRequestDto user
