@@ -9,4 +9,5 @@ public class BookReviewRequestDto {
     private Long bookId;
     private int rating;
     private String comment;
+    private Long author_id;
 }

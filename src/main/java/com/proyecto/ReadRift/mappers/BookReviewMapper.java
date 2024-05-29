@@ -14,9 +14,10 @@ public class BookReviewMapper {
     public BookReviewResponseDto toResponse(BookReview bookReview){
         return new BookReviewResponseDto(
                 bookReview.getId(),
-                bookReview.getBook().getId(),
+                bookReview.getBookId(),
                 bookReview.getRating(),
-                bookReview.getComment()
+                bookReview.getComment(),
+                bookReview.getAuthor_id()
         );
     }
     public List<BookReviewResponseDto> toResponse(List<BookReview> bookReviews){
@@ -28,11 +29,10 @@ public class BookReviewMapper {
     public BookReview toModel(BookReviewRequestDto bookReviewRequestDto){
         return new BookReview(
                 null,
-                null,
+                bookReviewRequestDto.getBookId(), // Asignar bookId desde el DTO
                 bookReviewRequestDto.getRating(),
                 bookReviewRequestDto.getComment(),
-                null
-
+                bookReviewRequestDto.getAuthor_id() // Asignar author_id desde el DTO
         );
     }
 

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
@@ -64,6 +65,20 @@ public class BookReviewController {
         List<BookReviewResponseDto> bookReviewResponseDtos = bookReviewMapper.toResponse(bookReviews);
         return ResponseEntity.ok(bookReviewResponseDtos);
     }
+
+    @GetMapping("/book/{bookId}")
+    public ResponseEntity<List<BookReviewResponseDto>> getReviewsByBookId(@PathVariable Long bookId) {
+        List<BookReview> reviews = bookReviewService.findReviewsByBookId(bookId);
+        if (reviews != null && !reviews.isEmpty()) {
+            List<BookReviewResponseDto> responseDtos = reviews.stream()
+                    .map(bookReviewMapper::toResponse)
+                    .collect(Collectors.toList());
+            return ResponseEntity.ok(responseDtos);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 
 

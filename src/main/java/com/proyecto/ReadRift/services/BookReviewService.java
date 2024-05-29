@@ -11,9 +11,11 @@ public interface BookReviewService {
     void deleteReviewById(Long id);
     BookReview save(BookReview bookReview);
 
-    List<BookReview> findReviewsByBookId (Long book);
+    List<BookReview> findReviewsByBookId (Long bookId);
 
     BookReview update(Long id, BookReview bookReview);
 
     List<BookReview> findAll();
+
+
 }

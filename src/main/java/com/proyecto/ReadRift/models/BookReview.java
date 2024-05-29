@@ -11,13 +11,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "book_review")
 public class BookReview {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private Book book;
+    @Column(name = "book_id")
+    private Long bookId;
 
     @Column(nullable = false)
     private int rating;
@@ -25,6 +26,5 @@ public class BookReview {
     @Column(length = 1000) // Asumiendo un límite de 1000 caracteres para los comentarios
     private String comment;
 
-    @ManyToOne
-    private User author;
+    private Long author_id;
 }
