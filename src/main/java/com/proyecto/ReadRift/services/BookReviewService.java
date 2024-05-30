@@ -12,6 +12,7 @@ public interface BookReviewService {
     BookReview save(BookReview bookReview);
 
     List<BookReview> findReviewsByBookId (Long bookId);
+    List<BookReview> findAllReviewsByAuthorId(Long authorId);
 
     BookReview update(Long id, BookReview bookReview);
 

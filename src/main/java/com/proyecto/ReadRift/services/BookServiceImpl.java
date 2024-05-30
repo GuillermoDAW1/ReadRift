@@ -24,6 +24,11 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findById(id).orElse(null);
     }
 
+    @Override
+    public List<Book> findByOwnerId(Long ownerId) {
+        return bookRepository.findByOwnerId(ownerId);
+    }
+
 
     @Override
     public void deleteById(Long id) {

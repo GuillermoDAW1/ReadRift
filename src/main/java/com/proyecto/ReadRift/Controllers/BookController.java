@@ -135,17 +135,15 @@ public class BookController {
         }
     }
 
-    /*@GetMapping("/owner/{ownerId}")
-    public ResponseEntity<List<Book>> getBooksByOwner(@PathVariable Long ownerId) {
-        Long owner_id = new User();
-        owner.setId(ownerId); // Suponiendo que tengas un método para obtener un usuario por ID en tu servicio de usuario
-        List<Book> books = bookService.findByOwner(owner_id);
+    @GetMapping("/owner/{ownerId}")
+    public ResponseEntity<List<Book>> getBooksByOwnerId(@PathVariable Long ownerId) {
+        List<Book> books = bookService.findByOwnerId(ownerId);
         if (books != null && !books.isEmpty()) {
-            return new ResponseEntity<>(books, HttpStatus.OK);
+            return ResponseEntity.ok(books);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return ResponseEntity.notFound().build();
         }
-    }*/
+    }
 
     @GetMapping("/search")
     public ResponseEntity<List<BookResponseDto>> searchBooks(@RequestParam(required = false) String title,

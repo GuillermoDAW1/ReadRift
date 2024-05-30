@@ -29,7 +29,7 @@ public class BookMapper {
                 book.getAvailable(),
                 book.getUrl_image(),
                 book.getIsbn(),
-                book.getOwner_id(),
+                book.getOwnerId(),
                 book.getCreatedAt(),
                 book.getUpdatedAt()
         );
@@ -51,7 +51,7 @@ public class BookMapper {
                 bookRequestDto.getAvailable(),
                 bookRequestDto.getUrl_image(),
                 bookRequestDto.getIsbn(),
-                bookRequestDto.getOwner_id(),
+                bookRequestDto.getOwnerId(),
                 LocalDateTime.now(),
                 LocalDateTime.now()
 

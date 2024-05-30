@@ -33,6 +33,11 @@ public class BookReviewServiceImpl implements BookReviewService {
     }
 
     @Override
+    public List<BookReview> findAllReviewsByAuthorId(Long authorId) {
+        return bookReviewRepository.findByAuthorId(authorId);
+    }
+
+    @Override
     public BookReview update(Long id, BookReview bookReview) {
         return null;
     }
@@ -52,7 +57,5 @@ public class BookReviewServiceImpl implements BookReviewService {
         bookReviewRepository.deleteById(id);
     }
 
+    }
 
-
-
-}

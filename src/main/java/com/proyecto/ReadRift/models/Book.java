@@ -27,10 +27,13 @@ public class Book {
     @Column(name = "`condition`")
     private String condition;
     private Boolean available;
+
+    @Column(length = 10000)
     private String url_image;
     private String isbn;
 
-    private Long owner_id;
+    @Column(name = "owner_id")
+    private Long ownerId;
 
     @CreatedDate
     private LocalDateTime createdAt;

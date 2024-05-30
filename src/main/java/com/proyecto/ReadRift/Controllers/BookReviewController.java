@@ -51,10 +51,12 @@ public class BookReviewController {
     public ResponseEntity<BookReviewResponseDto> updateBookReview(@PathVariable Long id, @RequestBody BookReviewRequestDto bookReviewRequestDto){
         BookReview existingBookReview = bookReviewService.findById(id);
         if (existingBookReview != null){
-            BookReview updateBookReview = bookReviewService.update(id, bookReviewMapper.toModel(bookReviewRequestDto));
-            BookReviewResponseDto bookReviewResponseDto = bookReviewMapper.toResponse(updateBookReview);
-            return ResponseEntity.ok(bookReviewResponseDto);
-        }else{
+            existingBookReview.setRating(bookReviewRequestDto.getRating());
+            existingBookReview.setComment(bookReviewRequestDto.getComment());
+            BookReview updatedReview = bookReviewService.save(existingBookReview);
+            BookReviewResponseDto responseDto = bookReviewMapper.toResponse(updatedReview);
+            return ResponseEntity.ok(responseDto);
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
@@ -77,6 +79,25 @@ public class BookReviewController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/author/{authorId}")
+    public ResponseEntity<List<BookReviewResponseDto>> getAllReviewsByAuthorId(@PathVariable Long authorId) {
+        List<BookReview> reviews = bookReviewService.findAllReviewsByAuthorId(authorId);
+        if (reviews != null && !reviews.isEmpty()) {
+            List<BookReviewResponseDto> responseDtos = reviews.stream()
+                    .map(bookReviewMapper::toResponse)
+                    .collect(Collectors.toList());
+            return ResponseEntity.ok(responseDtos);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteReview(@PathVariable Long id) {
+        bookReviewService.deleteReviewById(id);
+        return ResponseEntity.noContent().build();
     }
 
 

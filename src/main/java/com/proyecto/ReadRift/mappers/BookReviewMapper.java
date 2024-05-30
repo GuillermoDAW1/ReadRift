@@ -17,7 +17,7 @@ public class BookReviewMapper {
                 bookReview.getBookId(),
                 bookReview.getRating(),
                 bookReview.getComment(),
-                bookReview.getAuthor_id()
+                bookReview.getAuthorId()
         );
     }
     public List<BookReviewResponseDto> toResponse(List<BookReview> bookReviews){
@@ -29,10 +29,10 @@ public class BookReviewMapper {
     public BookReview toModel(BookReviewRequestDto bookReviewRequestDto){
         return new BookReview(
                 null,
-                bookReviewRequestDto.getBookId(), // Asignar bookId desde el DTO
+                bookReviewRequestDto.getBookId(),
                 bookReviewRequestDto.getRating(),
                 bookReviewRequestDto.getComment(),
-                bookReviewRequestDto.getAuthor_id() // Asignar author_id desde el DTO
+                bookReviewRequestDto.getAuthorId()
         );
     }
 

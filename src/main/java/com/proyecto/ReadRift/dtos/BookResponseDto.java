@@ -17,7 +17,7 @@ public class BookResponseDto {
     private final Boolean available;
     private final String url_image;
     private final String isbn;
-    private final Long owner_id;
+    private final Long ownerId;
     private final LocalDateTime createdAt;
     private final LocalDateTime updatedAt;
 }
