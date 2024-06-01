@@ -10,7 +10,7 @@ public interface BookService {
 
     Book findById(Long id);
     void deleteById(Long id);
-    Book save(Book book);
+    Book save(Book book, String email);
     Book update(Long id, Book book);
     List<Book> findAll();
    // List<Book> searchBooks(String title, String author, String areaOfStudy);

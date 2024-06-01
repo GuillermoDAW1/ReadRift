@@ -16,7 +16,8 @@ public class ExchangeRequestDto {
     private Long borrower_id; // El ID del usuario que solicita el préstamo
     private Long donor_id; // El ID del usuario que dona los libros
     private Long book_id;
-    //private LocalDateTime reqst_date; // Fecha de solicitud de préstamo
     private ExchangeStatus status; // Estado del intercambio
+    private LocalDateTime requestDate; // Fecha de solicitud de préstamo
+    private LocalDateTime responseDate;
 
 }

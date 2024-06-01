@@ -4,6 +4,7 @@ import com.proyecto.ReadRift.dtos.ExchangeRequestDto;
 import com.proyecto.ReadRift.dtos.ExchangeResponseDto;
 import com.proyecto.ReadRift.models.Exchange;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -12,19 +13,22 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
-@RequiredArgsConstructor
 public class ExchangeMapper {
 
-    private final UserMapper userMapper;
-    private final BookMapper bookMapper;
+    @Autowired
+    private  UserMapper userMapper;
+    @Autowired
+    private  BookMapper bookMapper;
+
     public ExchangeResponseDto toResponse(Exchange exchange) {
         return new ExchangeResponseDto(
                 exchange.getId(),
-                exchange.getBorrower().getId(), // Obtenemos el ID del usuario que solicita el préstamo
-                exchange.getDonor().getId(), // Obtenemos el ID del usuario que dona los libros
-                exchange.getBook().getId(), // Obtenemos el ID del usuario que dona los libros
-              //  exchange.getReq_date(),
-                exchange.getStatus()
+                exchange.getBorrower().getId(),
+                exchange.getDonor().getId(),
+                exchange.getBook().getId(),
+                exchange.getStatus(),
+                exchange.getRequestDate(),
+                exchange.getResponseDate()
         );
     }
 
@@ -37,11 +41,12 @@ public class ExchangeMapper {
     public Exchange toModel(ExchangeRequestDto exchangeRequestDto) {
         return new Exchange(
                 null, // El ID se generará automáticamente por la base de datos
-                // Aquí deberías tener lógica para obtener los usuarios y los libros prestados según los IDs proporcionados en el DTO
                 userMapper.toModel(exchangeRequestDto.getBorrower_id()),
                 userMapper.toModel(exchangeRequestDto.getDonor_id()),
                 bookMapper.toModel(exchangeRequestDto.getBook_id()),
-                exchangeRequestDto.getStatus()
+                exchangeRequestDto.getStatus(),
+                exchangeRequestDto.getRequestDate(),
+                exchangeRequestDto.getResponseDate()
         );
     }
 }

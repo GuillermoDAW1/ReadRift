@@ -3,19 +3,21 @@ package com.proyecto.ReadRift.services;
 import com.proyecto.ReadRift.models.Book;
 import com.proyecto.ReadRift.models.user.User;
 import com.proyecto.ReadRift.repositories.BookRepository;
+import com.proyecto.ReadRift.repositories.UserDetailsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
+    private final UserDetailsRepository userDetailsRepository;
 
-    public BookServiceImpl(BookRepository bookRepository) {
+    public BookServiceImpl(BookRepository bookRepository, UserDetailsRepository userDetailsRepository) {
         this.bookRepository = bookRepository;
+        this.userDetailsRepository = userDetailsRepository;
     }
 
 
@@ -36,7 +38,9 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book save(Book book) {
+    public Book save(Book book, String email) {
+        User user = userDetailsRepository.findByEmail(email);
+        book.setOwnerId(user.getId());
         return bookRepository.save(book);
     }
 
@@ -45,6 +49,7 @@ public class BookServiceImpl implements BookService {
         Book existingBook = findById(id);
         if (existingBook != null) {
             book.setId(existingBook.getId());
+            book.setOwnerId(existingBook.getOwnerId()); // No cambiar el owner_id en la actualización
             return bookRepository.save(book);
         }
         return null; // O puedes lanzar una excepción si prefieres
@@ -125,7 +130,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book findByIsbn(String isbn) {
-        return (Book) bookRepository.findByIsbn(isbn);
+        return bookRepository.findByIsbn(isbn);
     }
 
 }

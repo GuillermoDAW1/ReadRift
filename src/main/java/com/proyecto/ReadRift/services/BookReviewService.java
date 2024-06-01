@@ -17,6 +17,4 @@ public interface BookReviewService {
     BookReview update(Long id, BookReview bookReview);
 
     List<BookReview> findAll();
-
-
 }

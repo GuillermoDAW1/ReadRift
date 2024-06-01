@@ -24,5 +24,4 @@ public interface ExchangeRepository extends JpaRepository<Exchange, Long> {
 
     // Buscar intercambios por fecha de solicitud
 //    Exchange findByReqst_date(LocalDateTime requestDate);
-
 }

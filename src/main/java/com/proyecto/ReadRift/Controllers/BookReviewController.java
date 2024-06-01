@@ -36,7 +36,7 @@ public class BookReviewController {
         return ResponseEntity.status(HttpStatus.CREATED).body(bookReviewResponseDto);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/api/book-reviews/{id}")
     public ResponseEntity<BookReviewResponseDto> getReviewById(@PathVariable Long id){
         BookReview bookReview = bookReviewService.findById(id);
         if (bookReview != null){
@@ -47,7 +47,7 @@ public class BookReviewController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/api/book-reviews/{id}")
     public ResponseEntity<BookReviewResponseDto> updateBookReview(@PathVariable Long id, @RequestBody BookReviewRequestDto bookReviewRequestDto){
         BookReview existingBookReview = bookReviewService.findById(id);
         if (existingBookReview != null){

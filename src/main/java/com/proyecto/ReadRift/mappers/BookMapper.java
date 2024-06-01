@@ -61,4 +61,4 @@ public class BookMapper {
         return bookRepository.findById(bookId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid book ID: " + bookId));
     }
-    }
+}

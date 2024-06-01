@@ -9,6 +9,8 @@ import com.proyecto.ReadRift.mappers.BookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,8 +32,11 @@ public class BookController {
 
     @PostMapping
     public ResponseEntity<BookResponseDto> createBook(@RequestBody BookRequestDto bookRequestDto) {
-        Book book = bookService.save(bookMapper.toModel(bookRequestDto));
-        BookResponseDto bookResponseDto = bookMapper.toResponse(book);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        Book book = bookMapper.toModel(bookRequestDto);
+        Book savedBook = bookService.save(book, email);
+        BookResponseDto bookResponseDto = bookMapper.toResponse(savedBook);
         return ResponseEntity.status(HttpStatus.CREATED).body(bookResponseDto);
     }
 
@@ -146,9 +151,10 @@ public class BookController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<BookResponseDto>> searchBooks(@RequestParam(required = false) String title,
-                                                             @RequestParam(required = false) String author,
-                                                             @RequestParam(required = false) String isbn) {
+    public ResponseEntity<List<BookResponseDto>> searchBooks(
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String author,
+            @RequestParam(required = false) String isbn) {
         List<Book> foundBooks = bookService.searchBooks(title, author, isbn);
         List<BookResponseDto> bookResponseDtos = bookMapper.toResponse(foundBooks);
         return ResponseEntity.ok(bookResponseDtos);

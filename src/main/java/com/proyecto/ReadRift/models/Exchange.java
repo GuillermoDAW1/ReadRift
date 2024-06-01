@@ -7,8 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -29,4 +27,7 @@ public class Exchange {
   //  private LocalDateTime reqst_date; // Fecha de solicitud de préstamo
     @Enumerated(EnumType.STRING)
     private ExchangeStatus status; // Estado del intercambio (por ejemplo, "Completado", "En proceso", etc.)
+    private LocalDateTime requestDate; // Fecha de solicitud de préstamo
+
+    private LocalDateTime responseDate; // Fecha de respuesta del préstamo
 }
