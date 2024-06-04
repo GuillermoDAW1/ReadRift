@@ -29,20 +29,17 @@ public class ExchangeController {
 
     @GetMapping
     public ResponseEntity<List<ExchangeResponseDto>> getExchanges() {
-        // Suponiendo que tienes un método para obtener un usuario por ID en tu servicio de usuario
-        List<Exchange> exchanges = exchangeService.findAll(); //Mirar User
+        List<Exchange> exchanges = exchangeService.findAll();
         return ResponseEntity.ok(exchangeMapper.toResponse(exchanges));
     }
     @GetMapping("/borrower/{borrowerId}")
     public ResponseEntity<List<ExchangeResponseDto>> getExchangesByBorrower(@PathVariable Long borrowerId) {
-        // Suponiendo que tienes un método para obtener un usuario por ID en tu servicio de usuario
-        List<Exchange> exchanges = exchangeService.findByBorrower(borrowerId); //Mirar User
+        List<Exchange> exchanges = exchangeService.findByBorrower(borrowerId);
         return ResponseEntity.ok(exchangeMapper.toResponse(exchanges));
     }
 
     @GetMapping("/donor/{donorId}")
     public ResponseEntity<List<ExchangeResponseDto>> getExchangesByDonor(@PathVariable Long donorId) {
-        // Suponiendo que tienes un método para obtener un usuario por ID en tu servicio de usuario
         List<Exchange> exchanges = exchangeService.findByDonor(donorId);
         return ResponseEntity.ok(exchangeMapper.toResponse(exchanges));
     }
@@ -52,26 +49,9 @@ public class ExchangeController {
         List<Exchange> exchanges = exchangeService.findByStatus(status);
         return ResponseEntity.ok(exchangeMapper.toResponse(exchanges));
     }
-/*
-    @PostMapping
-    public ResponseEntity<ExchangeResponseDto> createExchange(@RequestBody ExchangeRequestDto exchangeRequestDto) {
-        Exchange exchange = exchangeService.save(exchangeMapper.toModel(exchangeRequestDto));
-        ExchangeResponseDto exchangeResponseDto = exchangeMapper.toResponse(exchange);
-        return ResponseEntity.status(HttpStatus.CREATED).body(exchangeResponseDto);
-    }
 
-
-   @GetMapping("/requestDate/{requestDate}")
-    public ResponseEntity<ExchangeResponseDto> getExchangesByRequestDate(@PathVariable LocalDateTime requestDate) {
-        Exchange exchanges = exchangeService.findByRequestDate(requestDate);
-        return ResponseEntity.ok(exchangeMapper.toResponse(exchanges));
-    }*/
-
-
-    @PostMapping("/request")
-    public ResponseEntity<ExchangeResponseDto> requestLoan(@RequestBody ExchangeRequestDto exchangeRequestDto) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName();
+    @PostMapping("/request/{email}")
+    public ResponseEntity<ExchangeResponseDto> requestLoan(@RequestBody ExchangeRequestDto exchangeRequestDto, @PathVariable String email) {
         User borrower = userService.loadUserByUsername(email);
 
         Exchange exchange = exchangeService.requestLoan(exchangeRequestDto.getBook_id(), borrower);
@@ -79,10 +59,8 @@ public class ExchangeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(exchangeResponseDto);
     }
 
-    @PostMapping("/respond")
-    public ResponseEntity<ExchangeResponseDto> respondToLoanRequest(@RequestBody RespondToLoanRequestDto respondToLoanRequestDto) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName();
+    @PostMapping("/respond/{email}")
+    public ResponseEntity<ExchangeResponseDto> respondToLoanRequest(@RequestBody RespondToLoanRequestDto respondToLoanRequestDto, @PathVariable String email) {
         User currentUser = userService.loadUserByUsername(email);
 
         Exchange exchange = exchangeService.respondToLoanRequest(respondToLoanRequestDto.getExchangeId(), respondToLoanRequestDto.isApprove(), currentUser);

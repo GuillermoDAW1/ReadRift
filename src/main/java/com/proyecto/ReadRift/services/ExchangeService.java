@@ -15,9 +15,8 @@ public interface ExchangeService {
     Exchange save(Exchange exchange);
 
     List<Exchange> findAll();
-    // Exchange findByRequestDate(LocalDateTime requestDate);
 
-    Exchange requestLoan(Long bookId, User borrower); // Enviar solicitud de préstamo
-    Exchange respondToLoanRequest(Long exchangeId,boolean approve, User currentUser); // Aceptar solicitud de préstamo
+    Exchange requestLoan(Long bookId, User borrower);
+    Exchange respondToLoanRequest(Long exchangeId,boolean approve, User currentUser);
 
 }

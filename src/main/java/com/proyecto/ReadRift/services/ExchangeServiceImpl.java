@@ -84,9 +84,9 @@ public class ExchangeServiceImpl implements ExchangeService {
         if (approve) {
             exchange.setStatus(ExchangeStatus.APPROVED);
             Book book = exchange.getBook();
-            book.setOwnerId(exchange.getBorrower().getId());  // Cambia el dueño del libro
-            book.setAvailable(false);  // Marca el libro como no disponible
-            bookRepository.save(book);  // Guarda los cambios en el libro
+            book.setOwnerId(exchange.getBorrower().getId());
+            book.setAvailable(false);
+            bookRepository.save(book);
         } else {
             exchange.setStatus(ExchangeStatus.CANCELLED);
         }

@@ -37,7 +37,6 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
-        RequestMatcher h2ConsoleMatcher = new AntPathRequestMatcher("/h2-console/**");
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors()  // Aunque de deprecated, lo sigue cogiendo y permite la comunicacion cruzada entre distintos dominios,
@@ -58,7 +57,6 @@ public class SecurityConfiguration {
 
 
 
-                        .requestMatchers(h2ConsoleMatcher).permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)

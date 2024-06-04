@@ -13,7 +13,6 @@ public interface BookService {
     Book save(Book book, String email);
     Book update(Long id, Book book);
     List<Book> findAll();
-   // List<Book> searchBooks(String title, String author, String areaOfStudy);
     Book updateAvailability(Long id, Boolean available);
     Book getBookDetails(Long id);
 

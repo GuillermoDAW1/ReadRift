@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
-
 @RestController
-@CrossOrigin(origins ="http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/book-reviews")
 public class BookReviewController {
 
@@ -28,7 +26,6 @@ public class BookReviewController {
         this.bookReviewService = bookReviewService;
         this.bookReviewMapper = bookReviewMapper;
     }
-
     @PostMapping
     public ResponseEntity<BookReviewResponseDto> createReview(@RequestBody BookReviewRequestDto bookReviewRequestDto){
         BookReview bookReview = bookReviewService.save(bookReviewMapper.toModel(bookReviewRequestDto));
@@ -36,7 +33,7 @@ public class BookReviewController {
         return ResponseEntity.status(HttpStatus.CREATED).body(bookReviewResponseDto);
     }
 
-    @GetMapping("/api/book-reviews/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<BookReviewResponseDto> getReviewById(@PathVariable Long id){
         BookReview bookReview = bookReviewService.findById(id);
         if (bookReview != null){
@@ -47,7 +44,7 @@ public class BookReviewController {
         }
     }
 
-    @PutMapping("/api/book-reviews/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<BookReviewResponseDto> updateBookReview(@PathVariable Long id, @RequestBody BookReviewRequestDto bookReviewRequestDto){
         BookReview existingBookReview = bookReviewService.findById(id);
         if (existingBookReview != null){
@@ -99,8 +96,7 @@ public class BookReviewController {
         bookReviewService.deleteReviewById(id);
         return ResponseEntity.noContent().build();
     }
-
-
-
-
 }
+
+
+

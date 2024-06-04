@@ -23,7 +23,7 @@ public class BookReview {
     @Column(nullable = false)
     private int rating;
 
-    @Column(length = 1000) // Asumiendo un límite de 1000 caracteres para los comentarios
+    @Column(length = 1000)
     private String comment;
 
     @Column(name = "author_id")

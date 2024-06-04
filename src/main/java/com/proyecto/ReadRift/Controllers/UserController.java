@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin(origins = "http://localhost:4200")                     // PERMITE EL INTERCAMBIO ENTRE BACKEND Y FRONTEND PUERTO DE ANGULAR
+@CrossOrigin(origins = "http://localhost:4200")
 @RequiredArgsConstructor
 public class UserController {
     private final UserDetailsServiceImpl userService;
@@ -29,7 +29,7 @@ public class UserController {
     @GetMapping("/token")
     public ResponseEntity<UserResponseDto> getUserByToken() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName();  // asumiendo que el principal es el email del usuario
+        String email = authentication.getName();
         User user = userService.loadUserByUsername(email);
         if (user != null) {
             UserResponseDto userResponseDto = userMapper.toResponse(user);

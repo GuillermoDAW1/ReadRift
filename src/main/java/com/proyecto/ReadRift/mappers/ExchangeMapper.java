@@ -40,7 +40,7 @@ public class ExchangeMapper {
 
     public Exchange toModel(ExchangeRequestDto exchangeRequestDto) {
         return new Exchange(
-                null, // El ID se generará automáticamente por la base de datos
+                null,
                 userMapper.toModel(exchangeRequestDto.getBorrower_id()),
                 userMapper.toModel(exchangeRequestDto.getDonor_id()),
                 bookMapper.toModel(exchangeRequestDto.getBook_id()),

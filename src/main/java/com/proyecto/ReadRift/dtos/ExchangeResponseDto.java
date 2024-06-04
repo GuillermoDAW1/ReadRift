@@ -13,10 +13,10 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ExchangeResponseDto {
     private Long id;
-    private Long borrower_id; // usuario que solicita el préstamo
-    private Long donor_id; //  usuario que dona los libros
+    private Long borrower_id;
+    private Long donor_id;
     private Long book_id;
-    private ExchangeStatus status;// Estado del intercambio
+    private ExchangeStatus status;
     private LocalDateTime requestDate;
     private LocalDateTime responseDate;
 }

@@ -20,7 +20,7 @@ public class Book {
 
     private String author;
     private String title;
-    private String description; // Agregamos una descripción del libro
+    private String description;
 
     @Column(name = "`condition`")
     private String condition;

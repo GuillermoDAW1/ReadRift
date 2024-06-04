@@ -28,7 +28,7 @@ public class User implements UserDetails {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private Role role = Role.USER; // Por defecto
+    private Role role = Role.USER;
 
     public User(String firstname, String email, String password) {
         this.firstname = firstname;

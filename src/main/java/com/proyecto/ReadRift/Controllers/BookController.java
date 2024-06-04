@@ -39,7 +39,6 @@ public class BookController {
         BookResponseDto bookResponseDto = bookMapper.toResponse(savedBook);
         return ResponseEntity.status(HttpStatus.CREATED).body(bookResponseDto);
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<BookResponseDto> getBookById(@PathVariable Long id) {
         Book book = bookService.findById(id);
@@ -74,15 +73,12 @@ public class BookController {
     public ResponseEntity<BookResponseDto> updateBookAvailability(
             @PathVariable Long id,
             @RequestParam Boolean available) {
-        // Llama al método del servicio para actualizar la disponibilidad del libro
         Book updatedBook = bookService.updateAvailability(id, available);
 
         if (updatedBook != null) {
-            // Si el libro se actualiza correctamente, devuelve una respuesta con el libro actualizado
             BookResponseDto bookResponseDto = bookMapper.toResponse(updatedBook);
             return ResponseEntity.ok(bookResponseDto);
         } else {
-            // Si el libro no se encuentra, devuelve una respuesta notFound
             return ResponseEntity.notFound().build();
         }
     }

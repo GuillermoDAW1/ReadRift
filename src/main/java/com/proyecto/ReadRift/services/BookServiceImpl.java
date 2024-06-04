@@ -49,21 +49,16 @@ public class BookServiceImpl implements BookService {
         Book existingBook = findById(id);
         if (existingBook != null) {
             book.setId(existingBook.getId());
-            book.setOwnerId(existingBook.getOwnerId()); // No cambiar el owner_id en la actualización
+            book.setOwnerId(existingBook.getOwnerId());
             return bookRepository.save(book);
         }
-        return null; // O puedes lanzar una excepción si prefieres
+        return null;
     }
 
     @Override
     public List<Book> findAll() {
         return bookRepository.findAll();
     }
-
-   // @Override
-//    public List<Book> searchBooks(String title, String author, String areaOfStudy){return bookRepository.(String title, String author, String areaOfStudy); }
-
-
 
     @Override
     public Book updateAvailability(Long id, Boolean available) {
@@ -72,7 +67,7 @@ public class BookServiceImpl implements BookService {
             existingBook.setAvailable(available);
             return bookRepository.save(existingBook);
         }
-        return null; // O puedes lanzar una excepción si prefieres
+        return null;
     }
 
     @Override
@@ -109,9 +104,6 @@ public class BookServiceImpl implements BookService {
     public List<Book> findByAuthor(String author) {
         return bookRepository.findByAuthor(author);
     }
-
-    //@Override
-    //public List<Book> findByOwner(Long owner_id) { return bookRepository.findByOwner(owner_id);}
 
     @Override
     public List<Book> findByTitle(String title) {
