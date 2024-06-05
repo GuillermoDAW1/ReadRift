@@ -23,12 +23,11 @@ public class ExchangeMapper {
     public ExchangeResponseDto toResponse(Exchange exchange) {
         return new ExchangeResponseDto(
                 exchange.getId(),
-                exchange.getBorrower().getId(),
-                exchange.getDonor().getId(),
-                exchange.getBook().getId(),
+                exchange.getBorrowerId(),
+                exchange.getDonorId(),
+                exchange.getBookId(),
                 exchange.getStatus(),
-                exchange.getRequestDate(),
-                exchange.getResponseDate()
+                exchange.getRequestDate()
         );
     }
 
@@ -41,12 +40,11 @@ public class ExchangeMapper {
     public Exchange toModel(ExchangeRequestDto exchangeRequestDto) {
         return new Exchange(
                 null,
-                userMapper.toModel(exchangeRequestDto.getBorrower_id()),
-                userMapper.toModel(exchangeRequestDto.getDonor_id()),
-                bookMapper.toModel(exchangeRequestDto.getBook_id()),
+                exchangeRequestDto.getBookId(),
+                exchangeRequestDto.getBorrowerId(),
+                exchangeRequestDto.getDonorId(),
                 exchangeRequestDto.getStatus(),
-                exchangeRequestDto.getRequestDate(),
-                exchangeRequestDto.getResponseDate()
+                exchangeRequestDto.getRequestDate()
         );
     }
 }

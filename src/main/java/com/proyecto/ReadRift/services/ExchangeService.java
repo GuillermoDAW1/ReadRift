@@ -2,9 +2,9 @@ package com.proyecto.ReadRift.services;
 
 import com.proyecto.ReadRift.models.Exchange;
 import com.proyecto.ReadRift.models.ExchangeStatus;
-import com.proyecto.ReadRift.models.user.User;
-import java.time.LocalDateTime;
+
 import java.util.List;
+import java.util.Optional;
 
 public interface ExchangeService {
     List<Exchange> findByBorrower(Long borrowerId);
@@ -16,7 +16,7 @@ public interface ExchangeService {
 
     List<Exchange> findAll();
 
-    Exchange requestLoan(Long bookId, User borrower);
-    Exchange respondToLoanRequest(Long exchangeId,boolean approve, User currentUser);
+    Exchange findById(Long Id); // Método para encontrar Exchange por ID
+
 
 }

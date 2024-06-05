@@ -50,21 +50,42 @@ public class ExchangeController {
         return ResponseEntity.ok(exchangeMapper.toResponse(exchanges));
     }
 
-    @PostMapping("/request/{email}")
-    public ResponseEntity<ExchangeResponseDto> requestLoan(@RequestBody ExchangeRequestDto exchangeRequestDto, @PathVariable String email) {
-        User borrower = userService.loadUserByUsername(email);
+    @PatchMapping("/{id}/approve")
+    public ResponseEntity<ExchangeResponseDto> approveExchange(@PathVariable Long id) {
+        Exchange exchange = exchangeService.findById(id);
+        if (exchange != null) {
+            exchange.setStatus(ExchangeStatus.APPROVED);
+            exchange = exchangeService.save(exchange);
+            ExchangeResponseDto exchangeResponseDto = exchangeMapper.toResponse(exchange);
+            return ResponseEntity.ok(exchangeResponseDto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
-        Exchange exchange = exchangeService.requestLoan(exchangeRequestDto.getBook_id(), borrower);
-        ExchangeResponseDto exchangeResponseDto = exchangeMapper.toResponse(exchange);
+    @PatchMapping("/{id}/cancel")
+    public ResponseEntity<ExchangeResponseDto> cancelExchange(@PathVariable Long id) {
+        Exchange exchange = exchangeService.findById(id);
+        if (exchange != null) {
+            exchange.setStatus(ExchangeStatus.CANCELLED);
+            exchange = exchangeService.save(exchange);
+            ExchangeResponseDto exchangeResponseDto = exchangeMapper.toResponse(exchange);
+            return ResponseEntity.ok(exchangeResponseDto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+
+
+    @PostMapping
+    public ResponseEntity<ExchangeResponseDto> createExchange(@RequestBody ExchangeRequestDto exchangeRequestDto) {
+        Exchange exchange = exchangeMapper.toModel(exchangeRequestDto);
+        Exchange savedExchange = exchangeService.save(exchange);
+        ExchangeResponseDto exchangeResponseDto = exchangeMapper.toResponse(savedExchange);
         return ResponseEntity.status(HttpStatus.CREATED).body(exchangeResponseDto);
     }
 
-    @PostMapping("/respond/{email}")
-    public ResponseEntity<ExchangeResponseDto> respondToLoanRequest(@RequestBody RespondToLoanRequestDto respondToLoanRequestDto, @PathVariable String email) {
-        User currentUser = userService.loadUserByUsername(email);
 
-        Exchange exchange = exchangeService.respondToLoanRequest(respondToLoanRequestDto.getExchangeId(), respondToLoanRequestDto.isApprove(), currentUser);
-        ExchangeResponseDto exchangeResponseDto = exchangeMapper.toResponse(exchange);
-        return ResponseEntity.ok(exchangeResponseDto);
-    }
 }

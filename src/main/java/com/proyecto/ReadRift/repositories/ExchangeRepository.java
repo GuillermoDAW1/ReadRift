@@ -12,9 +12,9 @@ import java.util.List;
 @Repository
 public interface ExchangeRepository extends JpaRepository<Exchange, Long> {
 
-    List<Exchange> findByBorrower_Id(Long borrower);
-    List<Exchange> findByDonor_Id(Long donor);
-    List<Exchange> findByBook_Id(Long book);
+    List<Exchange> findByBorrowerId(Long borrowerId);
+    List<Exchange> findByDonorId(Long donorId);
+    List<Exchange> findByBookId(Long bookId);
     List<Exchange> findByStatus(ExchangeStatus status);
 
 }

@@ -17,16 +17,19 @@ public class Exchange {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    private User borrower;
-    @ManyToOne
-    private User donor;
-    @ManyToOne
-    private Book book;
+
+    @Column(name = "book_id")
+    private Long bookId;
+
+    @Column(name = "borrower_id")
+    private Long borrowerId;
+
+    @Column(name = "donor_id")
+    private Long donorId;
+
 
     @Enumerated(EnumType.STRING)
     private ExchangeStatus status;
     private LocalDateTime requestDate;
 
-    private LocalDateTime responseDate;
 }
