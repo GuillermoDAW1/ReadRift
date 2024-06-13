@@ -2,7 +2,9 @@ package com.proyecto.ReadRift.config;
 
 import com.proyecto.ReadRift.auth.JwtAuthenticationFilter;
 import com.proyecto.ReadRift.repositories.UserDetailsRepository;
+import com.proyecto.ReadRift.services.AdminRequestServiceImpl;
 import com.proyecto.ReadRift.services.UserDetailsServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,16 +29,17 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@RequiredArgsConstructor
+
 public class SecurityConfiguration {
 
     private final UserDetailsRepository userDetailsRepository;
+    private final AdminRequestServiceImpl adminRequestServiceImpl;
 
-    public SecurityConfiguration(UserDetailsRepository userDetailsRepository) {
-        this.userDetailsRepository = userDetailsRepository;
-    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
+        RequestMatcher h2ConsoleMatcher = new AntPathRequestMatcher("/h2-console/**");
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors()  // Aunque de deprecated, lo sigue cogiendo y permite la comunicacion cruzada entre distintos dominios,
@@ -46,17 +49,11 @@ public class SecurityConfiguration {
                 .headers().frameOptions().disable() // Deshabilitar frameOptions para permitir la consola H2
                 .and()
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers(mvc.pattern("/api/auth/login")).permitAll()
-                        .requestMatchers(mvc.pattern("/api/auth/signup")).permitAll()
-                        .requestMatchers(mvc.pattern("/api/books/**")).permitAll()
-                        .requestMatchers(mvc.pattern("/api/exchanges/**")).permitAll()
-                        .requestMatchers(mvc.pattern("/api/book-reviews/**")).permitAll()
-                        .requestMatchers(mvc.pattern("/api/user/**")).permitAll()
-
-
-
-
-
+                        .requestMatchers("/api/auth/login",
+                                "/api/auth/signup","/api/books/**",
+                                "/api/exchanges/**","/api/book-reviews/**"
+                                ,"/api/user/**").permitAll()
+                        .requestMatchers(h2ConsoleMatcher).permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
@@ -89,7 +86,7 @@ public class SecurityConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new UserDetailsServiceImpl(userDetailsRepository, passwordEncoder());
+        return new UserDetailsServiceImpl(userDetailsRepository, passwordEncoder(), adminRequestServiceImpl);
     }
 
     @Bean

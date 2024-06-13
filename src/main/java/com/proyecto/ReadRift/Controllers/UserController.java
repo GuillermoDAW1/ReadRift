@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:4200")
 @RequiredArgsConstructor
 public class UserController {
+
     private final UserDetailsServiceImpl userService;
     private final UserMapper userMapper;
 
@@ -62,5 +63,12 @@ public class UserController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+    @PostMapping("/request-admin")
+    public ResponseEntity<Void> requestAdmin() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        userService.requestAdmin(email);
+        return ResponseEntity.noContent().build();
     }
 }

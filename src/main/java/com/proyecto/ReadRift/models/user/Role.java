@@ -28,6 +28,19 @@ public enum Role {
             MANAGER_CREATE
         )
     ),
+    SUPER_ADMIN(
+            Set.of(
+                    ADMIN_READ,
+                    ADMIN_UPDATE,
+                    ADMIN_DELETE,
+                    ADMIN_CREATE,
+                    MANAGER_READ,
+                    MANAGER_UPDATE,
+                    MANAGER_DELETE,
+                    MANAGER_CREATE,
+                    SUPER_ADMIN_MANAGE
+            )
+    ),
     MANAGER(
         Set.of(
             MANAGER_READ,

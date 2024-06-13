@@ -5,6 +5,7 @@ import com.proyecto.ReadRift.dtos.BookReviewResponseDto;
 import com.proyecto.ReadRift.mappers.BookReviewMapper;
 import com.proyecto.ReadRift.models.BookReview;
 import com.proyecto.ReadRift.services.BookReviewService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,16 +17,12 @@ import java.util.stream.Collectors;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/book-reviews")
+@RequiredArgsConstructor
 public class BookReviewController {
 
     private final BookReviewService bookReviewService;
     private final BookReviewMapper bookReviewMapper;
 
-    @Autowired
-    public BookReviewController(BookReviewService bookReviewService, BookReviewMapper bookReviewMapper) {
-        this.bookReviewService = bookReviewService;
-        this.bookReviewMapper = bookReviewMapper;
-    }
     @PostMapping
     public ResponseEntity<BookReviewResponseDto> createReview(@RequestBody BookReviewRequestDto bookReviewRequestDto){
         BookReview bookReview = bookReviewService.save(bookReviewMapper.toModel(bookReviewRequestDto));

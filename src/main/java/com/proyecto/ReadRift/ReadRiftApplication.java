@@ -1,13 +1,16 @@
 package com.proyecto.ReadRift;
 
 import com.proyecto.ReadRift.services.InitialDataCreationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class ReadRiftApplication {
+public class ReadRiftApplication implements CommandLineRunner {
+
+	@Autowired
+	private InitialDataCreationService initialDataCreationService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ReadRiftApplication.class, args);
@@ -24,16 +27,10 @@ public class ReadRiftApplication {
 		System.out.println("*******************************************************************************************************************************************************************************************");
 
 		System.out.println("Abra Postman en http://localhost:8080/api/books para ver las BOOKS.");
-
 	}
 
-
-	/*@Bean
-	public CommandLineRunner init(InitialDataCreationService service) {
-		return args -> {
-			service.createDefaultUser(10);
-			service.createFakeBooks(50);
-			service.createFakeExchanges(20);
-			service.createFakeBookReviews(10);
-		};}*/
+	@Override
+	public void run(String... args) throws Exception {
+		initialDataCreationService.createInitialData();
+	}
 }

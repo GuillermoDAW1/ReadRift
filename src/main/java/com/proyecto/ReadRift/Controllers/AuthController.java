@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,9 +41,14 @@ public class AuthController {
     public ResponseEntity<?> signup(
             @RequestBody SignupRequest signupRequest
     ) {
-        if(userDetailsService.exixtsUser(signupRequest.getEmail())) return ResponseEntity.badRequest().build();
+        if(userDetailsService.existsUser(signupRequest.getEmail())) return ResponseEntity.badRequest().build();
 
         User user = userDetailsService.create(signupRequest);
         return ResponseEntity.ok(Map.of("token", jwtService.createToken(user.getEmail())));
+    }
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout() {
+        SecurityContextHolder.clearContext();
+        return ResponseEntity.ok(Map.of("message", "Successfully logged out"));
     }
 }

@@ -20,12 +20,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserDetailsRepository userDetailsRepository;
     private final PasswordEncoder passwordEncoder;
+    private final AdminRequestServiceImpl adminRequestServiceImpl;
 
     @Override
     public User loadUserByUsername(String email) throws UsernameNotFoundException {
         return userDetailsRepository.findByEmail(email);
     }
-    public User create(SignupRequest signupRequest){
+
+    public User create(SignupRequest signupRequest) {
         User user = new User(
                 null,
                 signupRequest.getFirstname(),
@@ -38,7 +40,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return user;
     }
 
-    public User save(User user){
+    public User save(User user) {
         return userDetailsRepository.save(user);
     }
 
@@ -46,15 +48,24 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User userUpdated = this.loadUserByUsername(email);
         userUpdated.setFirstname(user.getFirstname());
         userUpdated.setLastname(user.getLastname());
+        userUpdated.setPassword(passwordEncoder.encode(user.getPassword()));
         userDetailsRepository.save(userUpdated);
         return userUpdated;
     }
-    public boolean exixtsUser(String email){ return userDetailsRepository.existsByEmail(email); }
 
-    public User findById(Long id){
-        return userDetailsRepository.findById(id).get();
+    public boolean existsUser(String email) {
+        return userDetailsRepository.existsByEmail(email);
     }
-    public List<User> findAll(){
+
+    public User findById(Long id) {
+        return userDetailsRepository.findById(id).orElse(null);
+    }
+
+    public List<User> findAll() {
         return userDetailsRepository.findAll();
+    }
+
+    public void requestAdmin(String email) {
+        adminRequestServiceImpl.requestAdmin(email);
     }
 }

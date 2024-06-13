@@ -6,6 +6,7 @@ import com.proyecto.ReadRift.models.Book;
 import com.proyecto.ReadRift.models.user.User;
 import com.proyecto.ReadRift.services.BookService;
 import com.proyecto.ReadRift.mappers.BookMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,16 +20,12 @@ import java.util.UUID;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/books")
+@RequiredArgsConstructor
 public class BookController {
 
     private final BookService bookService;
     private final BookMapper bookMapper;
 
-    @Autowired
-    public BookController(BookService bookService, BookMapper bookMapper) {
-        this.bookService = bookService;
-        this.bookMapper = bookMapper;
-    }
 
     @PostMapping
     public ResponseEntity<BookResponseDto> createBook(@RequestBody BookRequestDto bookRequestDto) {

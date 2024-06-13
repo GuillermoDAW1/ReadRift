@@ -30,11 +30,7 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER;
 
-    public User(String firstname, String email, String password) {
-        this.firstname = firstname;
-        this.email = email;
-        this.password = password;
-    }
+  // Indica si el usuario ha solicitado ser administrador
 
     // Perfiles de seguridad en base a sus roles
     @Override
@@ -71,4 +67,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 }
