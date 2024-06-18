@@ -1,5 +1,6 @@
 package com.proyecto.ReadRift.services;
 
+import com.proyecto.ReadRift.models.Book;
 import com.proyecto.ReadRift.models.Exchange;
 import com.proyecto.ReadRift.models.ExchangeStatus;
 import com.proyecto.ReadRift.repositories.BookRepository;
@@ -45,6 +46,14 @@ public class ExchangeServiceImpl implements ExchangeService {
 
     @Override
     public Exchange save(Exchange exchange) {
+        // Actualiza el estado del libro a no disponible cuando se aprueba el intercambio
+        if (exchange.getStatus() == ExchangeStatus.APPROVED) {
+            Book book = bookRepository.findById(exchange.getBookId()).orElse(null);
+            if (book != null) {
+                book.setAvailable(false);
+                bookRepository.save(book);
+            }
+        }
         return exchangeRepository.save(exchange);
     }
 
