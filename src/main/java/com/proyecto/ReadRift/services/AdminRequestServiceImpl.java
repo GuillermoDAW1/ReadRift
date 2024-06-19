@@ -12,7 +12,6 @@ public class AdminRequestServiceImpl {
 
     public void requestAdmin(String email) { adminRequests.add(email);
     }
-
     public void approveAdminRequest(String email) {
         adminRequests.remove(email);
     }
@@ -25,7 +24,4 @@ public class AdminRequestServiceImpl {
         return adminRequests.contains(email);
     }
 
-    public Set<String> getAllRequests() {
-        return new HashSet<>(adminRequests);
-    }
 }

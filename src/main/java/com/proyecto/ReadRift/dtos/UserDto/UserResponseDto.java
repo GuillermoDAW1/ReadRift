@@ -1,6 +1,5 @@
 package com.proyecto.ReadRift.dtos.UserDto;
 
-
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;

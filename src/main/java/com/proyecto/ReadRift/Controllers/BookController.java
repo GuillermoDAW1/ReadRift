@@ -3,11 +3,9 @@ package com.proyecto.ReadRift.Controllers;
 import com.proyecto.ReadRift.dtos.BookRequestDto;
 import com.proyecto.ReadRift.dtos.BookResponseDto;
 import com.proyecto.ReadRift.models.Book;
-import com.proyecto.ReadRift.models.user.User;
 import com.proyecto.ReadRift.services.BookService;
 import com.proyecto.ReadRift.mappers.BookMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -15,7 +13,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")

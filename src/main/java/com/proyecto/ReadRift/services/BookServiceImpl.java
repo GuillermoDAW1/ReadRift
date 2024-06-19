@@ -77,24 +77,17 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> searchBooks(String title, String author, String isbn) {
-        // Implementa la lógica de búsqueda en función de los parámetros proporcionados
         if (title != null && author != null && isbn != null) {
-            // Ejemplo: busca libros por título, autor y ISBN
             return bookRepository.findByTitleAndAuthorAndIsbn(title, author, isbn);
         } else if (title != null && author != null) {
-            // Ejemplo: busca libros por título y autor
             return bookRepository.findByTitleAndAuthor(title, author);
         } else if (title != null) {
-            // Ejemplo: busca libros por título
             return bookRepository.findByTitle(title);
         } else if (author != null) {
-            // Ejemplo: busca libros por autor
             return bookRepository.findByAuthor(author);
         } else if (isbn != null) {
-            // Ejemplo: busca libros por ISBN
             return Collections.singletonList(bookRepository.findByIsbn(isbn));
         } else {
-            // Si no se proporcionan criterios de búsqueda, devuelve todos los libros
             return bookRepository.findAll();
         }
     }

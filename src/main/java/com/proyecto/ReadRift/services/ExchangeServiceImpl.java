@@ -16,12 +16,12 @@ public class ExchangeServiceImpl implements ExchangeService {
 
     private final ExchangeRepository exchangeRepository;
     private final BookRepository bookRepository;
-    private final UserDetailsRepository userDetailsRepository;
 
-    public ExchangeServiceImpl(ExchangeRepository exchangeRepository, BookRepository bookRepository, UserDetailsRepository userDetailsRepository) {
+
+    public ExchangeServiceImpl(ExchangeRepository exchangeRepository, BookRepository bookRepository) {
         this.exchangeRepository = exchangeRepository;
         this.bookRepository = bookRepository;
-        this.userDetailsRepository = userDetailsRepository;
+
     }
 
     @Override

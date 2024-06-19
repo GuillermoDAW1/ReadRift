@@ -15,8 +15,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @Entity
 @Table(name = "user_")
-// Lo importante es que implemente UserDetails
-// Esta interfaz nos obliga a implementar los métodos y propiedades para que Spring Security
+
 public class User implements UserDetails {
 
     @Id
@@ -30,9 +29,6 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER;
 
-  // Indica si el usuario ha solicitado ser administrador
-
-    // Perfiles de seguridad en base a sus roles
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return role.getAuthorities();
@@ -67,6 +63,4 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-
 }

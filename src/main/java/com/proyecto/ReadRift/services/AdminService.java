@@ -9,7 +9,4 @@ public interface AdminService {
     List<User> findAllUsers();
 
     void deleteUserById(Long userId);
-    /*
-    void approveAdminRequest(Long userId);
-    void rejectAdminRequest(Long userId);*/
 }

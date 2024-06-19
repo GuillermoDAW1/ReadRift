@@ -1,6 +1,5 @@
 package com.proyecto.ReadRift.models;
 
-import com.proyecto.ReadRift.models.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

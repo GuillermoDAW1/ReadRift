@@ -4,7 +4,6 @@ import com.proyecto.ReadRift.models.Exchange;
 import com.proyecto.ReadRift.models.ExchangeStatus;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ExchangeService {
     List<Exchange> findByBorrower(Long borrowerId);
@@ -16,7 +15,7 @@ public interface ExchangeService {
 
     List<Exchange> findAll();
 
-    Exchange findById(Long Id); // Método para encontrar Exchange por ID
+    Exchange findById(Long Id);
 
 
 }

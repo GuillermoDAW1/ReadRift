@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import static com.proyecto.ReadRift.models.user.Permission.*;
 
+@Getter
 @RequiredArgsConstructor
 public enum Role {
 
@@ -21,7 +22,6 @@ public enum Role {
             ADMIN_UPDATE,
             ADMIN_DELETE,
             ADMIN_CREATE,
-            // Podemos añadir permisos de otros roles
             MANAGER_READ,
             MANAGER_UPDATE,
             MANAGER_DELETE,
@@ -50,10 +50,8 @@ public enum Role {
         )
     );
 
-    @Getter
     private final Set<Permission> permissions;
 
-    // Obtenemos los permisos del role en formato SimpleGrantedAuthority de Spring
     public List<SimpleGrantedAuthority> getAuthorities() {
         var authorities = getPermissions()
                 .stream()

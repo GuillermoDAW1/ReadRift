@@ -3,22 +3,13 @@ package com.proyecto.ReadRift.mappers;
 import com.proyecto.ReadRift.dtos.ExchangeRequestDto;
 import com.proyecto.ReadRift.dtos.ExchangeResponseDto;
 import com.proyecto.ReadRift.models.Exchange;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
 public class ExchangeMapper {
-
-    @Autowired
-    private  UserMapper userMapper;
-    @Autowired
-    private  BookMapper bookMapper;
 
     public ExchangeResponseDto toResponse(Exchange exchange) {
         return new ExchangeResponseDto(

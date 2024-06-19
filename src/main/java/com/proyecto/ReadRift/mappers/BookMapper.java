@@ -3,14 +3,12 @@ package com.proyecto.ReadRift.mappers;
 import com.proyecto.ReadRift.dtos.BookRequestDto;
 import com.proyecto.ReadRift.dtos.BookResponseDto;
 import com.proyecto.ReadRift.models.Book;
-import com.proyecto.ReadRift.models.user.User;
 import com.proyecto.ReadRift.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component

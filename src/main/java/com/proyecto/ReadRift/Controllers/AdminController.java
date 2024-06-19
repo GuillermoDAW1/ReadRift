@@ -12,7 +12,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -50,7 +49,7 @@ public class AdminController {
         User currentUser = userService.loadUserByUsername(authentication.getName());
 
         if (currentUser.getRole() != Role.SUPER_ADMIN) {
-            return ResponseEntity.status(403).build(); // Forbidden
+            return ResponseEntity.status(403).build();
         }
         User user = userService.findById(userId);
         if (user != null && adminRequestServiceImpl.hasRequestedAdmin(user.getEmail())) {

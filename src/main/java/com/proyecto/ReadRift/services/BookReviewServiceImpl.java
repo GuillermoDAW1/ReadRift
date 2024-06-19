@@ -1,24 +1,20 @@
 package com.proyecto.ReadRift.services;
 
-import com.proyecto.ReadRift.dtos.BookReviewRequestDto;
-import com.proyecto.ReadRift.models.Book;
 import com.proyecto.ReadRift.models.BookReview;
-import com.proyecto.ReadRift.repositories.BookRepository;
 import com.proyecto.ReadRift.repositories.BookReviewRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class BookReviewServiceImpl implements BookReviewService {
 
     private final BookReviewRepository bookReviewRepository;
-    private final BookRepository bookRepository;
 
-    public BookReviewServiceImpl(BookReviewRepository bookReviewRepository, BookRepository bookRepository) {
+
+    public BookReviewServiceImpl(BookReviewRepository bookReviewRepository) {
         this.bookReviewRepository = bookReviewRepository;
-        this.bookRepository = bookRepository;
     }
 
     @Override

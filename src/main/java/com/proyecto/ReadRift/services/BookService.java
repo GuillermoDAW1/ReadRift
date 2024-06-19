@@ -1,10 +1,8 @@
 package com.proyecto.ReadRift.services;
 
 import com.proyecto.ReadRift.models.Book;
-import com.proyecto.ReadRift.models.user.User;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface BookService {
 
